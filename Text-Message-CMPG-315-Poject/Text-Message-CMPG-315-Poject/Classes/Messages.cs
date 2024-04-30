@@ -10,6 +10,8 @@ namespace Text_Message_CMPG_315_Poject.Classes
     [FirestoreData]
     public class Messages
     {
+        // class created to fetch and send data to the server
+
         [FirestoreProperty]
         public string body { get; set; }
 
