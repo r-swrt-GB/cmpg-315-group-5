@@ -69,7 +69,7 @@ namespace Text_Message_CMPG_315_Poject.Forms
             var database = FirestoreHelper.Database;
             var data = createUserProfile(email, password);
 
-            DocumentReference documentReference = database.Collection("Users").Document(data.Email);
+            DocumentReference documentReference = database.Collection("users").Document(data.Email);
             documentReference.SetAsync(data);
             MessageBox.Show("Registration successful!");
         }
@@ -79,7 +79,7 @@ namespace Text_Message_CMPG_315_Poject.Forms
 
             var database = FirestoreHelper.Database;
 
-            DocumentReference documentReference = database.Collection("Users").Document(email);
+            DocumentReference documentReference = database.Collection("users").Document(email);
             User user = documentReference.GetSnapshotAsync().Result.ConvertTo<User>();
 
             if (user != null)

@@ -144,7 +144,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\FirestoreHelper.cs" />
+    <Compile Include="Classes\Messages.cs" />
     <Compile Include="Classes\User.cs" />
+    <Compile Include="Forms\BackEndTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BackEndTest.Designer.cs">
+      <DependentUpon>BackEndTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +166,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\BackEndTest.resx">
+      <DependentUpon>BackEndTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
