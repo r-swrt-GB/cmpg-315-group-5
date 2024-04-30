@@ -35,6 +35,31 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Messages.cs",
+              "DocumentMoniker": "C:\\Users\\stefa\\source\\repos\\cmpg-315-group-5\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Classes\\Messages.cs",
+              "RelativeDocumentMoniker": "Text-Message-CMPG-315-Poject\\Classes\\Messages.cs",
+              "ToolTip": "C:\\Users\\stefa\\source\\repos\\cmpg-315-group-5\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Classes\\Messages.cs",
+              "RelativeToolTip": "Text-Message-CMPG-315-Poject\\Classes\\Messages.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T16:50:31.749Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\stefa\\source\\repos\\cmpg-315-group-5\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Classes\\User.cs",
+              "RelativeDocumentMoniker": "Text-Message-CMPG-315-Poject\\Classes\\User.cs",
+              "ToolTip": "C:\\Users\\stefa\\source\\repos\\cmpg-315-group-5\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Classes\\User.cs",
+              "RelativeToolTip": "Text-Message-CMPG-315-Poject\\Classes\\User.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T16:47:08.781Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Register.cs",
               "DocumentMoniker": "C:\\Users\\Christo\\projects\\cmpg-315-group-5\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\Register.cs",
               "RelativeDocumentMoniker": "Text-Message-CMPG-315-Poject\\Forms\\Register.cs",

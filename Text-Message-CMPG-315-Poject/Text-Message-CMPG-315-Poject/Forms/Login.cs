@@ -48,7 +48,7 @@ namespace Text_Message_CMPG_315_Poject
         {
             var database = FirestoreHelper.Database;
 
-            DocumentReference documentReference = database.Collection("Users").Document(email);
+            DocumentReference documentReference = database.Collection("users").Document(email);
             User user = documentReference.GetSnapshotAsync().Result.ConvertTo<User>();
 
             if (user != null && password == user.Password)
