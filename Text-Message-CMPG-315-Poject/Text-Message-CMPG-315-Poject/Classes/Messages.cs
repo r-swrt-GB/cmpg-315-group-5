@@ -10,9 +10,6 @@ namespace Text_Message_CMPG_315_Poject.Classes
     [FirestoreData]
     public class Messages
     {
-        // testing 123
-        // more testing
-
         [FirestoreProperty]
         public string body { get; set; }
 
