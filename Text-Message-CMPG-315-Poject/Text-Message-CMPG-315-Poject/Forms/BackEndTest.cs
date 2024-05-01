@@ -71,6 +71,7 @@ namespace Text_Message_CMPG_315_Poject.Forms
                 sender_id = sender,
                 created_at = sent,
                 read_at = read,
+                //im helping
             };
         }
     }
