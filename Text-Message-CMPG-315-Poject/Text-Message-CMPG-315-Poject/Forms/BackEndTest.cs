@@ -22,6 +22,10 @@ namespace Text_Message_CMPG_315_Poject.Forms
         public BackEndTest()
         {
             InitializeComponent();
+            FirestoreDb database = FirestoreHelper.Database;
+            //This must be the login email
+            string recipientEmail = "receiver@example.com";
+            SetupRealTimeMessageListener(database, recipientEmail);
         }
 
         public async Task<string> FindUserIdByEmail(FirestoreDb database, string email)
@@ -95,5 +99,79 @@ namespace Text_Message_CMPG_315_Poject.Forms
             };
         }
 
+        public async Task<List<Messages>> GetMessagesForRecipient(FirestoreDb database, string recipientEmail)
+        {
+            string recipientId = await FindUserIdByEmail(database, recipientEmail);
+            if (recipientId == null)
+            {
+                MessageBox.Show("Recipient not found.");
+                return new List<Messages>();  // Return an empty list if no recipient is found
+            }
+
+            // Fetch messages for the recipient_id 
+            CollectionReference messagesCollection = database.Collection("messages");
+            Query query = messagesCollection.WhereEqualTo("recipient_id", recipientId);
+            QuerySnapshot snapshot = await query.GetSnapshotAsync();
+
+            List<Messages> messages = new List<Messages>();
+            foreach (DocumentSnapshot documentSnapshot in snapshot.Documents)
+            {
+                Messages message = documentSnapshot.ConvertTo<Messages>();
+                messages.Add(message);
+            }
+
+            return messages;
+        }
+
+        // Display messages in the UI
+        public async void DisplayMessages(string recipientEmail)
+        {
+            FirestoreDb database = FirestoreHelper.Database;
+            List<Messages> messages = await GetMessagesForRecipient(database, recipientEmail);
+
+            foreach (Messages message in messages)
+            {
+                listBox1.Items.Add(message.body + " - Sent at: " + message.created_at.ToString());
+            }
+        }
+
+        public void SetupRealTimeMessageListener(FirestoreDb database, string recipientEmail)
+        {
+            Task.Run(async () =>
+            {
+                string recipientId = await FindUserIdByEmail(database, recipientEmail);
+                if (recipientId == null)
+                {
+                    MessageBox.Show("Recipient not found.");
+                    return;
+                }
+
+                CollectionReference messagesCollection = database.Collection("messages");
+                Query query = messagesCollection.WhereEqualTo("recipient_id", recipientId);
+
+                // Listen for real-time updates
+                FirestoreChangeListener listener = query.Listen(snapshot =>
+                {
+                    foreach (DocumentChange change in snapshot.Changes)
+                    {
+                        if (change.ChangeType == DocumentChange.Type.Added)
+                        {
+                            Messages message = change.Document.ConvertTo<Messages>();
+                            this.Invoke(new Action(() =>
+                            {
+                                listBox1.Items.Add($"{message.body} - Sent at: {message.created_at.ToString()}");
+                            }));
+                        }
+                    }
+                });
+            });
+        }
+
+
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
