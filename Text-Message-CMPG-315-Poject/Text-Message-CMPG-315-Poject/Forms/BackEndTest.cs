@@ -165,11 +165,64 @@ namespace Text_Message_CMPG_315_Poject.Forms
                     }
                 });
             });
+
+
+        }
+
+        // retrieve all users from the database
+        public async Task<List<User>> GetAllUsers(FirestoreDb database)
+        {
+            // gets reference to the users collection in the database
+            CollectionReference userCollection = database.Collection("users");
+
+            //retrieve a snapshot of the documents in the collection
+            QuerySnapshot snapshot = await userCollection.GetSnapshotAsync();
+
+            
+            // initialise a list to store the user objects
+            List<User> users = new List<User>();
+
+            // iterate through each document snapshot in the snapshot
+            foreach (DocumentSnapshot documentSnapshot in snapshot.Documents)
+            {
+                // convert the snapshots to a user object and adds it to the list
+                User user = documentSnapshot.ConvertTo<User>();
+                users.Add(user);
+            }
+            return users;
+        }
+        
+        // populates the checkbox lists with user emails
+        private void PopulateCheckboxList(List<User> users)
+        {
+            // iterates through each user in the list
+            foreach (User user in users)
+            {
+                // ensures that the user object is not null, if not, the checkbox lists are populated
+                if (!string.IsNullOrEmpty(user?.Email))
+                {
+                    checkedListBox1.Items.Add(user.Email);
+                    checkedListBox2.Items.Add(user.Email);  
+                }
+            }
         }
 
 
-
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private async void BackEndTest_Load(object sender, EventArgs e)
+        {
+            FirestoreDb database = FirestoreHelper.Database;
+
+            List<User> users = await GetAllUsers(database);
+
+            PopulateCheckboxList(users);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
         {
 
         }
