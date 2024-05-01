@@ -60,5 +60,14 @@ namespace Text_Message_CMPG_315_Poject
                 MessageBox.Show("Incorrect email or password");
             }
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            BackEndTest test = new BackEndTest();
+
+            this.Hide();
+
+            test.Show();
+        }
     }
 }

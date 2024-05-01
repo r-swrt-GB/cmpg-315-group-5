@@ -35,14 +35,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblRegisterEmail = new System.Windows.Forms.Label();
             this.lblRegisterPassword = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnNavigateToRegister
             // 
-            this.btnNavigateToRegister.Location = new System.Drawing.Point(67, 363);
-            this.btnNavigateToRegister.Margin = new System.Windows.Forms.Padding(6);
+            this.btnNavigateToRegister.Location = new System.Drawing.Point(34, 189);
             this.btnNavigateToRegister.Name = "btnNavigateToRegister";
-            this.btnNavigateToRegister.Size = new System.Drawing.Size(255, 65);
+            this.btnNavigateToRegister.Size = new System.Drawing.Size(128, 34);
             this.btnNavigateToRegister.TabIndex = 0;
             this.btnNavigateToRegister.Text = "Register an account";
             this.btnNavigateToRegister.UseVisualStyleBackColor = true;
@@ -50,10 +50,9 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(67, 268);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(6);
+            this.btnLogin.Location = new System.Drawing.Point(34, 139);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(255, 65);
+            this.btnLogin.Size = new System.Drawing.Size(128, 34);
             this.btnLogin.TabIndex = 1;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -61,52 +60,68 @@
             // 
             // tbxEmail
             // 
-            this.tbxEmail.Location = new System.Drawing.Point(45, 131);
+            this.tbxEmail.Location = new System.Drawing.Point(22, 68);
+            this.tbxEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxEmail.Name = "tbxEmail";
-            this.tbxEmail.Size = new System.Drawing.Size(301, 31);
+            this.tbxEmail.Size = new System.Drawing.Size(152, 20);
             this.tbxEmail.TabIndex = 2;
             // 
             // tbxPassword
             // 
-            this.tbxPassword.Location = new System.Drawing.Point(45, 195);
+            this.tbxPassword.Location = new System.Drawing.Point(22, 101);
+            this.tbxPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxPassword.Name = "tbxPassword";
             this.tbxPassword.PasswordChar = '*';
-            this.tbxPassword.Size = new System.Drawing.Size(301, 31);
+            this.tbxPassword.Size = new System.Drawing.Size(152, 20);
             this.tbxPassword.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(149, 47);
+            this.label1.Location = new System.Drawing.Point(74, 24);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 37);
+            this.label1.Size = new System.Drawing.Size(53, 20);
             this.label1.TabIndex = 4;
             this.label1.Text = "Login";
             // 
             // lblRegisterEmail
             // 
             this.lblRegisterEmail.AutoSize = true;
-            this.lblRegisterEmail.Location = new System.Drawing.Point(40, 103);
+            this.lblRegisterEmail.Location = new System.Drawing.Point(20, 54);
+            this.lblRegisterEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRegisterEmail.Name = "lblRegisterEmail";
-            this.lblRegisterEmail.Size = new System.Drawing.Size(65, 25);
+            this.lblRegisterEmail.Size = new System.Drawing.Size(32, 13);
             this.lblRegisterEmail.TabIndex = 12;
             this.lblRegisterEmail.Text = "Email";
             // 
             // lblRegisterPassword
             // 
             this.lblRegisterPassword.AutoSize = true;
-            this.lblRegisterPassword.Location = new System.Drawing.Point(40, 167);
+            this.lblRegisterPassword.Location = new System.Drawing.Point(20, 87);
+            this.lblRegisterPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRegisterPassword.Name = "lblRegisterPassword";
-            this.lblRegisterPassword.Size = new System.Drawing.Size(106, 25);
+            this.lblRegisterPassword.Size = new System.Drawing.Size(53, 13);
             this.lblRegisterPassword.TabIndex = 13;
             this.lblRegisterPassword.Text = "Password";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(61, 245);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // frmLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(397, 508);
+            this.ClientSize = new System.Drawing.Size(198, 280);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblRegisterPassword);
             this.Controls.Add(this.lblRegisterEmail);
             this.Controls.Add(this.label1);
@@ -114,7 +129,6 @@
             this.Controls.Add(this.tbxEmail);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnNavigateToRegister);
-            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
@@ -132,6 +146,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblRegisterEmail;
         private System.Windows.Forms.Label lblRegisterPassword;
+        private System.Windows.Forms.Button button1;
     }
 }
 

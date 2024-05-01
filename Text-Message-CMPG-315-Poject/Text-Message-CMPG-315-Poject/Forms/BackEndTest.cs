@@ -24,6 +24,7 @@ namespace Text_Message_CMPG_315_Poject.Forms
         {
 
             // dummy text that will be entered into the database
+            string primkey;
             string body;
             string group;
             string recipient;
@@ -38,26 +39,32 @@ namespace Text_Message_CMPG_315_Poject.Forms
             senderID = "Tester";
             sent = DateTime.Now;
             read = DateTime.Now;
+            primkey = recipient + sent.ToString();
 
             // connect to the database via the Messages collection
             var database = FirestoreHelper.Database;
+
+
             // add message variable object to be stored in the database
-            var data = message(body, group, recipient, senderID, sent, read);
+            var data = message(primkey,body, group, recipient, senderID, sent, read);
 
             // gets reference to the messages collection in the database (the reference is the body?)
 
-            DocumentReference documentReference = database.Collection("Messages").Document(data.body);
+            DocumentReference documentReference = database.Collection("messages").Document("1234");
 
             // write the data to the database
             documentReference.SetAsync(data);
 
+            MessageBox.Show(data.primkey);
+
         }
 
-       // function to create a new message
-        public Messages message(string body, string group, string recipient, string sender, DateTime sent, DateTime read)
+       // function to create a new message object
+        public Messages message(string primkey,string body, string group, string recipient, string sender, DateTime sent, DateTime read)
         {
             return new Messages()
             {
+                primkey = primkey,
                 body = body,
                 group_id = group,
                 recipient_id = recipient,
