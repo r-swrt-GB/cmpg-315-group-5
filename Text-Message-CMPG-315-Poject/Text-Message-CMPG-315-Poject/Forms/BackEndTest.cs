@@ -25,7 +25,8 @@ namespace Text_Message_CMPG_315_Poject.Forms
             FirestoreDb database = FirestoreHelper.Database;
             //This must be the login email
             string recipientEmail = "receiver@example.com";
-            SetupRealTimeMessageListener(database, recipientEmail);
+            string senderEmail = "sender@example.com";
+            SetupRealTimeMessageListener(database, senderEmail, recipientEmail, listBox1);
         }
 
         public async Task<string> FindUserIdByEmail(FirestoreDb database, string email)
@@ -99,73 +100,106 @@ namespace Text_Message_CMPG_315_Poject.Forms
             };
         }
 
-        public async Task<List<Messages>> GetMessagesForRecipient(FirestoreDb database, string recipientEmail)
+        public async Task<List<Messages>> GetMessagesBetweenUsers(FirestoreDb database, string userOneEmail, string userTwoEmail)
         {
-            string recipientId = await FindUserIdByEmail(database, recipientEmail);
-            if (recipientId == null)
+            string userOneId = await FindUserIdByEmail(database, userOneEmail);
+            string userTwoId = await FindUserIdByEmail(database, userTwoEmail);
+            if (userOneId == null || userTwoId == null)
             {
-                MessageBox.Show("Recipient not found.");
-                return new List<Messages>();  // Return an empty list if no recipient is found
+                MessageBox.Show("One or both users not found.");
+                return new List<Messages>();  // Return an empty list if either user is not found
             }
-
-            // Fetch messages for the recipient_id 
-            CollectionReference messagesCollection = database.Collection("messages");
-            Query query = messagesCollection.WhereEqualTo("recipient_id", recipientId);
-            QuerySnapshot snapshot = await query.GetSnapshotAsync();
 
             List<Messages> messages = new List<Messages>();
-            foreach (DocumentSnapshot documentSnapshot in snapshot.Documents)
+
+            // Fetch messages where userOne is the sender and userTwo is the recipient
+            CollectionReference messagesCollection = database.Collection("messages");
+            Query queryOne = messagesCollection
+                .WhereEqualTo("sender_id", userOneId)
+                .WhereEqualTo("recipient_id", userTwoId);
+            QuerySnapshot snapshotOne = await queryOne.GetSnapshotAsync();
+            foreach (DocumentSnapshot document in snapshotOne.Documents)
             {
-                Messages message = documentSnapshot.ConvertTo<Messages>();
-                messages.Add(message);
+                messages.Add(document.ConvertTo<Messages>());
             }
+
+            // Fetch messages where userOne is the recipient and userTwo is the sender
+            Query queryTwo = messagesCollection
+                .WhereEqualTo("sender_id", userTwoId)
+                .WhereEqualTo("recipient_id", userOneId);
+            QuerySnapshot snapshotTwo = await queryTwo.GetSnapshotAsync();
+            foreach (DocumentSnapshot document in snapshotTwo.Documents)
+            {
+                messages.Add(document.ConvertTo<Messages>());
+            }
+
+            // Optionally, sort messages by created_at if needed
+            messages.Sort((x, y) => DateTime.Compare(x.created_at, y.created_at));
 
             return messages;
         }
 
+
+
         // Display messages in the UI
-        public async void DisplayMessages(string recipientEmail)
+        public async void DisplayMessagesBetweenUsers(string userOneEmail, string userTwoEmail)
         {
             FirestoreDb database = FirestoreHelper.Database;
-            List<Messages> messages = await GetMessagesForRecipient(database, recipientEmail);
+            List<Messages> messages = await GetMessagesBetweenUsers(database, userOneEmail, userTwoEmail);
 
             foreach (Messages message in messages)
             {
-                listBox1.Items.Add(message.body + " - Sent at: " + message.created_at.ToString());
+                string prefix = message.sender_id == await FindUserIdByEmail(database, userOneEmail) ? "You sent: " : "Other sent: ";
+                listBox1.Items.Add($"{prefix}{message.body} - Sent at: {message.created_at.ToLocalTime()}");
             }
         }
 
-        public void SetupRealTimeMessageListener(FirestoreDb database, string recipientEmail)
+
+        public void SetupRealTimeMessageListener(FirestoreDb database, string userOneEmail, string userTwoEmail, ListBox messageDisplayBox)
         {
             Task.Run(async () =>
             {
-                string recipientId = await FindUserIdByEmail(database, recipientEmail);
-                if (recipientId == null)
+                string userOneId = await FindUserIdByEmail(database, userOneEmail);
+                string userTwoId = await FindUserIdByEmail(database, userTwoEmail);
+                if (userOneId == null || userTwoId == null)
                 {
-                    MessageBox.Show("Recipient not found.");
+                    MessageBox.Show("One or both users not found.");
                     return;
                 }
 
                 CollectionReference messagesCollection = database.Collection("messages");
-                Query query = messagesCollection.WhereEqualTo("recipient_id", recipientId);
 
-                // Listen for real-time updates
-                FirestoreChangeListener listener = query.Listen(snapshot =>
-                {
-                    foreach (DocumentChange change in snapshot.Changes)
-                    {
-                        if (change.ChangeType == DocumentChange.Type.Added)
-                        {
-                            Messages message = change.Document.ConvertTo<Messages>();
-                            this.Invoke(new Action(() =>
-                            {
-                                listBox1.Items.Add($"{message.body} - Sent at: {message.created_at.ToString()}");
-                            }));
-                        }
-                    }
-                });
+                // Setup listener for messages where userOne is the sender and userTwo is the recipient
+                Query queryOne = messagesCollection
+                    .WhereEqualTo("sender_id", userOneId)
+                    .WhereEqualTo("recipient_id", userTwoId);
+
+                // Setup listener for messages where userOne is the recipient and userTwo is the sender
+                Query queryTwo = messagesCollection
+                    .WhereEqualTo("sender_id", userTwoId)
+                    .WhereEqualTo("recipient_id", userOneId);
+
+                // Listen for real-time updates from both queries
+                queryOne.Listen(snapshot => HandleDocumentChanges(snapshot, "You sent: ", messageDisplayBox));
+                queryTwo.Listen(snapshot => HandleDocumentChanges(snapshot, "They sent: ", messageDisplayBox));
             });
         }
+
+        private void HandleDocumentChanges(QuerySnapshot snapshot, string messagePrefix, ListBox messageDisplayBox)
+        {
+            foreach (DocumentChange change in snapshot.Changes)
+            {
+                if (change.ChangeType == DocumentChange.Type.Added)
+                {
+                    Messages message = change.Document.ConvertTo<Messages>();
+                    this.Invoke(new Action(() =>
+                    {
+                        messageDisplayBox.Items.Add($"{messagePrefix}{message.body} - Sent at: {message.created_at.ToLocalTime()}");
+                    }));
+                }
+            }
+        }
+
 
 
 
