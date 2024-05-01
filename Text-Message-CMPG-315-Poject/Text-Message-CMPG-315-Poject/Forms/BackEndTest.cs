@@ -20,59 +20,70 @@ namespace Text_Message_CMPG_315_Poject.Forms
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public async Task<string> FindUserIdByEmail(FirestoreDb database, string email)
         {
+            CollectionReference usersCollection = database.Collection("users");
+            Query query = usersCollection.WhereEqualTo("Email", email);
+            QuerySnapshot snapshot = await query.GetSnapshotAsync();
 
-            // dummy text that will be entered into the database
-            string primkey;
-            string body;
-            string group;
-            string recipient;
-            string senderID;
-            DateTime sent;
-            DateTime read;
-
-            // test data
-            body = "This is a test message";
-            group = null;
-            recipient = "Stefan";
-            senderID = "Tester";
-            sent = DateTime.Now;
-            read = DateTime.Now;
-            primkey = recipient + sent.ToString();
-
-            // connect to the database via the Messages collection
-            var database = FirestoreHelper.Database;
-
-
-            // add message variable object to be stored in the database
-            var data = message(primkey,body, group, recipient, senderID, sent, read);
-
-            // gets reference to the messages collection in the database (the reference is the body?)
-
-            DocumentReference documentReference = database.Collection("messages").Document("1234");
-
-            // write the data to the database
-            documentReference.SetAsync(data);
-
-            MessageBox.Show(data.primkey);
-
+            if (snapshot.Count == 1)
+            {
+                DocumentSnapshot userDocument = snapshot.Documents[0];
+                return userDocument.Id;
+            }
+            return null;
         }
 
-       // function to create a new message object
-        public Messages message(string primkey,string body, string group, string recipient, string sender, DateTime sent, DateTime read)
+        public async Task SendMessageAsync(FirestoreDb database, string senderEmail, string recipientEmail, string messageBody)
+        {
+            string senderId = await FindUserIdByEmail(database, senderEmail);
+            string recipientId = await FindUserIdByEmail(database, recipientEmail);
+
+            if (recipientId == null)
+            {
+                MessageBox.Show("Recipient not found.");
+                return;
+            }
+
+            Messages newMessage = new Messages()
+            {
+                body = messageBody,
+                created_at = DateTime.UtcNow,
+                recipient_id = recipientId,
+                sender_id = senderId,
+                read_at = null  //message hasn't been read 
+            };
+
+            CollectionReference messagesCollection = database.Collection("messages");
+            DocumentReference newDocRef = await messagesCollection.AddAsync(newMessage);
+            MessageBox.Show("Message sent successfully. ID: " + newDocRef.Id);
+        }
+
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            FirestoreDb database = FirestoreHelper.Database;
+
+            // Example usage of sending a message
+            string senderEmail = "sender@example.com";
+            string recipientEmail = "receiver@example.com";
+            string messageBody = "This is another test message";
+
+            await SendMessageAsync(database, senderEmail, recipientEmail, messageBody);
+        }
+
+        public Messages CreateMessage(string body, string groupId, string recipientId, string senderId, DateTime sent, DateTime? read = null)
         {
             return new Messages()
             {
-                primkey = primkey,
                 body = body,
-                group_id = group,
-                recipient_id = recipient,
-                sender_id = sender,
+                group_id = groupId,
+                recipient_id = recipientId,
+                sender_id = senderId,
                 created_at = sent,
-                read_at = read,
-                //im helping
+                read_at = read
             };
         }
+
     }
 }

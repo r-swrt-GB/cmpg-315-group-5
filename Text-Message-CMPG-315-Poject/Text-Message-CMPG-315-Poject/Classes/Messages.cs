@@ -25,7 +25,7 @@ namespace Text_Message_CMPG_315_Poject.Classes
         public string group_id { get; set; }
 
         [FirestoreProperty]
-        public DateTime read_at { get; set; }
+        public DateTime? read_at { get; set; } //add "?" to make nullable since message wont be read immediately
 
         [FirestoreProperty]
         public string recipient_id { get; set; }
