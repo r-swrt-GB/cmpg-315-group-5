@@ -1,0 +1,12 @@
+C:\Users\Sheny\Desktop\CMPG315_Assignment\ChatApp_CMPG315\bin\Debug\ChatApp_CMPG315.exe.config
+C:\Users\Sheny\Desktop\CMPG315_Assignment\ChatApp_CMPG315\bin\Debug\ChatApp_CMPG315.exe
+C:\Users\Sheny\Desktop\CMPG315_Assignment\ChatApp_CMPG315\bin\Debug\ChatApp_CMPG315.pdb
+C:\Users\Sheny\Desktop\CMPG315_Assignment\ChatApp_CMPG315\obj\Debug\ChatApp_CMPG315.ProfilePage.resources
+C:\Users\Sheny\Desktop\CMPG315_Assignment\ChatApp_CMPG315\obj\Debug\ChatApp_CMPG315.Properties.Resources.resources
+C:\Users\Sheny\Desktop\CMPG315_Assignment\ChatApp_CMPG315\obj\Debug\ChatApp_CMPG315.csproj.GenerateResource.cache
+C:\Users\Sheny\Desktop\CMPG315_Assignment\ChatApp_CMPG315\obj\Debug\ChatApp_CMPG315.csproj.CoreCompileInputs.cache
+C:\Users\Sheny\Desktop\CMPG315_Assignment\ChatApp_CMPG315\obj\Debug\ChatApp_CMPG315.exe
+C:\Users\Sheny\Desktop\CMPG315_Assignment\ChatApp_CMPG315\obj\Debug\ChatApp_CMPG315.pdb
+C:\Users\Sheny\Desktop\CMPG315_Assignment\ChatApp_CMPG315\obj\Debug\ChatApp_CMPG315.Main.resources
+C:\Users\Sheny\Desktop\CMPG315_Assignment\ChatApp_CMPG315\obj\Debug\ChatApp_CMPG315.csproj.AssemblyReference.cache
+C:\Users\Sheny\Desktop\CMPG315_Assignment\ChatApp_CMPG315\obj\Debug\ChatApp_CMPG315.CTextBox.resources
