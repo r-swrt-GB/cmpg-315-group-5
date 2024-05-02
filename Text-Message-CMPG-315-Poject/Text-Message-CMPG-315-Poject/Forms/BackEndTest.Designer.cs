@@ -51,9 +51,9 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(447, 135);
+            this.listBox1.Location = new System.Drawing.Point(332, 135);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(309, 186);
+            this.listBox1.Size = new System.Drawing.Size(508, 186);
             this.listBox1.TabIndex = 1;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
