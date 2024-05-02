@@ -240,6 +240,7 @@ namespace Text_Message_CMPG_315_Poject.Forms
             }
         }
 
+        /*
         private void HandleDocumentChanges(QuerySnapshot snapshot, string messagePrefix, ListBox messageDisplayBox)
         {
             foreach (DocumentChange change in snapshot.Changes)
@@ -254,7 +255,7 @@ namespace Text_Message_CMPG_315_Poject.Forms
                 }
             }
         }
-
+        */
 
 
 
