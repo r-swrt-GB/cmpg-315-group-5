@@ -240,6 +240,22 @@ namespace Text_Message_CMPG_315_Poject.Forms
             }
         }
 
+        private void HandleDocumentChanges(QuerySnapshot snapshot, string messagePrefix, ListBox messageDisplayBox)
+        {
+            foreach (DocumentChange change in snapshot.Changes)
+            {
+                if (change.ChangeType == DocumentChange.Type.Added)
+                {
+                    Messages message = change.Document.ConvertTo<Messages>();
+                    this.Invoke(new Action(() =>
+                    {
+                        messageDisplayBox.Items.Add($"{messagePrefix}{message.body} - Sent at: {message.created_at.ToLocalTime()}");
+                    }));
+                }
+            }
+        }
+
+
 
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
