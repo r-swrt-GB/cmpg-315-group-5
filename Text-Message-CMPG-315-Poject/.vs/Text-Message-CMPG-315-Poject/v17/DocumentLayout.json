@@ -1,33 +1,29 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\",
+  "WorkspaceRootPath": "C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|c:\\users\\gerri\\desktop\\chat\\text-message-cmpg-315-poject\\text-message-cmpg-315-poject\\forms\\backendtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|c:\\users\\stefa\\projects\\text-message-cmpg-315-poject\\text-message-cmpg-315-poject\\forms\\backendtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|solutionrelative:text-message-cmpg-315-poject\\forms\\backendtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\text-message-cmpg-315-poject\\forms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|solutionrelative:text-message-cmpg-315-poject\\forms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\text-message-cmpg-315-poject\\forms\\backendtest.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|solutionrelative:text-message-cmpg-315-poject\\forms\\backendtest.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\text-message-cmpg-315-poject\\forms\\backendtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\text-message-cmpg-315-poject\\forms\\backendtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|solutionrelative:text-message-cmpg-315-poject\\forms\\backendtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\text-message-cmpg-315-poject\\forms\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\text-message-cmpg-315-poject\\classes\\groups.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|solutionrelative:text-message-cmpg-315-poject\\classes\\groups.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\text-message-cmpg-315-poject\\forms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|solutionrelative:text-message-cmpg-315-poject\\forms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\text-message-cmpg-315-poject\\forms\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|solutionrelative:text-message-cmpg-315-poject\\forms\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\text-message-cmpg-315-poject\\classes\\messages.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|solutionrelative:text-message-cmpg-315-poject\\classes\\messages.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\text-message-cmpg-315-poject\\forms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\text-message-cmpg-315-poject\\forms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|solutionrelative:text-message-cmpg-315-poject\\forms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -38,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 227,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,23 +42,35 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BackEndTest.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.Designer.cs",
-              "RelativeDocumentMoniker": "Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.Designer.cs",
-              "ToolTip": "C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.Designer.cs",
-              "RelativeToolTip": "Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.Designer.cs",
-              "ViewState": "AQIAADMAAAAAAAAAAAAowH0AAAAmAAAA",
+              "DocumentIndex": 1,
+              "Title": "BackEndTest.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.cs",
+              "RelativeDocumentMoniker": "Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.cs",
+              "ToolTip": "C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.cs [Design]",
+              "RelativeToolTip": "Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T20:44:40.205Z"
+              "WhenOpened": "2024-05-04T17:47:25.511Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "Groups.cs",
+              "DocumentMoniker": "C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Classes\\Groups.cs",
+              "RelativeDocumentMoniker": "Text-Message-CMPG-315-Poject\\Classes\\Groups.cs",
+              "ToolTip": "C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Classes\\Groups.cs",
+              "RelativeToolTip": "Text-Message-CMPG-315-Poject\\Classes\\Groups.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-04T15:09:24.705Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Login.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\Login.cs",
+              "DocumentMoniker": "C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\Login.cs",
               "RelativeDocumentMoniker": "Text-Message-CMPG-315-Poject\\Forms\\Login.cs",
-              "ToolTip": "C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\Login.cs [Design]",
+              "ToolTip": "C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\Login.cs [Design]",
               "RelativeToolTip": "Text-Message-CMPG-315-Poject\\Forms\\Login.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-01T07:17:11.304Z"
@@ -71,22 +79,22 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "BackEndTest.cs",
-              "DocumentMoniker": "C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.cs",
+              "DocumentMoniker": "C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.cs",
               "RelativeDocumentMoniker": "Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.cs",
-              "ToolTip": "C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.cs",
+              "ToolTip": "C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.cs",
               "RelativeToolTip": "Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.cs",
-              "ViewState": "AQIAAL8AAAAAAAAAAAAuwM4AAAAxAAAA",
+              "ViewState": "AQIAAIgBAAAAAAAAAAAUwI0BAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-01T07:09:01.066Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "Login.cs",
-              "DocumentMoniker": "C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\Login.cs",
+              "DocumentMoniker": "C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\Login.cs",
               "RelativeDocumentMoniker": "Text-Message-CMPG-315-Poject\\Forms\\Login.cs",
-              "ToolTip": "C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\Login.cs",
+              "ToolTip": "C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\Login.cs",
               "RelativeToolTip": "Text-Message-CMPG-315-Poject\\Forms\\Login.cs",
               "ViewState": "AQIAACAAAAAAAAAAAAAIwB8AAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -94,34 +102,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Messages.cs",
-              "DocumentMoniker": "C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Classes\\Messages.cs",
-              "RelativeDocumentMoniker": "Text-Message-CMPG-315-Poject\\Classes\\Messages.cs",
-              "ToolTip": "C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Classes\\Messages.cs",
-              "RelativeToolTip": "Text-Message-CMPG-315-Poject\\Classes\\Messages.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAABsAAABwAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T20:31:22.18Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BackEndTest.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.cs",
-              "RelativeDocumentMoniker": "Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.cs",
-              "ToolTip": "C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.cs [Design]",
-              "RelativeToolTip": "Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-01T07:09:00.051Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Register.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\Register.cs",
+              "DocumentMoniker": "C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\Register.cs",
               "RelativeDocumentMoniker": "Text-Message-CMPG-315-Poject\\Forms\\Register.cs",
-              "ToolTip": "C:\\Users\\gerri\\Desktop\\Chat\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\Register.cs [Design]",
+              "ToolTip": "C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\Register.cs [Design]",
               "RelativeToolTip": "Text-Message-CMPG-315-Poject\\Forms\\Register.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-30T18:51:29.115Z"

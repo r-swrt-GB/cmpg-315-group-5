@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Google.Cloud.Firestore;
@@ -19,6 +20,12 @@ namespace Text_Message_CMPG_315_Poject.Forms
 {
     public partial class BackEndTest : Form
     {
+        /*
+        public string title;
+        public string description;
+        public DateTime creationDate;
+        public string createdBy;
+        */
         public BackEndTest()
         {
             InitializeComponent();
@@ -226,6 +233,51 @@ namespace Text_Message_CMPG_315_Poject.Forms
             return users;
         }
 
+        // creates the group and writes it to the database
+        public async Task CreateGroup(CheckedListBox checkedListBox, string created_by, string groupDescription, DateTime created_at, string title)
+        {
+            var database = FirestoreHelper.Database;
+            CollectionReference groupsCollection = database.Collection("groups");
+            DocumentReference newGroupRef = groupsCollection.Document();
+
+            if (ifGroupExist(title))
+            {
+                MessageBox.Show("This group already exists!!");
+            }
+
+            // the list contains all of the members selected from the checkedlistbox
+            List<string> groupMembers = GetGroupMembers(checkedListBox);
+            Dictionary<string, object> groupData = new Dictionary<string, object>
+            {
+                { "participants", groupMembers},
+                { "Created_by", created_by},
+                { "description", groupDescription },
+                { "created_at", created_at },
+                { "title", title }
+            };
+
+            await newGroupRef.SetAsync(groupData);
+
+            MessageBox.Show("Added!");
+            // clears the list for future use
+            groupMembers.Clear();
+        }
+
+        // gets the group members from firebase
+        public List<string> GetGroupMembers(CheckedListBox checkedListBox)
+        {
+            List<string> members = new List<string>(); 
+            foreach (var item in checkedListBox.CheckedItems)
+            {
+                members.Add(item.ToString());   
+            }
+            return members;
+        }
+        public CheckedListBox getSelectedChecklistBox(CheckedListBox checkedListBox)
+        {
+            return checkedListBox;
+        }
+
         // populates the checkbox lists with user emails
         private void PopulateCheckboxList(List<User> users)
         {
@@ -241,16 +293,129 @@ namespace Text_Message_CMPG_315_Poject.Forms
             }
         }
 
+        // checks to see if the group the user wants to create already exists
+        public bool ifGroupExist(string title)
+        {
+            var database = FirestoreHelper.Database;
+
+            DocumentReference documentReference = database.Collection("groups").Document(title);
+            Group name = documentReference.GetSnapshotAsync().Result.ConvertTo<Group>();
+
+            if (name != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;   
+            }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void BackEndTest_Load_1(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private async void BackEndTest_Load(object sender, EventArgs e)
         {
             FirestoreDb database = FirestoreHelper.Database;
 
+            
             List<User> users = await GetAllUsers(database);
 
             PopulateCheckboxList(users);
+            populateCombobox();
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private async void button3_Click_1(object sender, EventArgs e)
+        {
+            string title = "Group_Example_1";
+            string description = "This is a test to see if the code works";
+            string created_by = "sender@example.com";
+            DateTime created_at = DateTime.UtcNow; // converts to firebase readable format
+
+            // which checkedlist box must be used
+            CheckedListBox selectedListBox = getSelectedChecklistBox(checkedListBox2);
+
+            await CreateGroup(selectedListBox, created_by, description, created_at, title);
+        }
+
+        public async Task<List<string>> getGroupNames(FirestoreDb database)
+        {
+            List<string> names = new List<string>();
+            QuerySnapshot snapshot = await database.Collection("groups").GetSnapshotAsync(); 
+
+            foreach (DocumentSnapshot document in snapshot.Documents)
+            {
+                if (document.ContainsField("title"))
+                {
+                   string title = document.GetValue<string>("title");
+                    if (!string.IsNullOrEmpty(title))
+                    {
+                        names.Add(title);
+                    }
+                }
+            }
+
+            return names;
+        }
+
+
+        public async void populateCombobox()
+        {
+            FirestoreDb database = FirestoreHelper.Database;
+
+            comboBox1.Items.Clear();
+            List<string> names = await getGroupNames(database);
+
+            comboBox1.Items.AddRange(names.ToArray());
+
+            if (comboBox1.Items.Count > 0)
+            {
+                comboBox1.SelectedIndex = 0;
+            }
+        }
+
+        public async void AddNewUsersToSelectedGroup()
+        {
+            string selectedGroup = comboBox1.SelectedItem.ToString();
+            if (string.IsNullOrEmpty(selectedGroup))
+            {
+                MessageBox.Show("Please select a group!");
+                return;
+            }
+
+           // List<string> selectedUsers = getSelectedUsers(checkedListBox2);
+
+           // List<string> currentMembers = await GetGroupMembers(selectedGroup);
+
+            await addNewUsers(selectedGroup, selectedUsers);
+        }
+
+        public async Task addNewUsers(string title, List<string> users)
+        {
+            var database = FirestoreHelper.Database;
+            DocumentReference group = database.Collection("groups").Document(title);
+
+            Dictionary<string, object> update = new Dictionary<string, object>
+            {
+                {"participants", FieldValue.ArrayUnion(users) },
+            };
+
+        }
+
+
+        private void button2_Click(object sender, EventArgs e)
         {
 
         }

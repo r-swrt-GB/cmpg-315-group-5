@@ -148,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\FirestoreHelper.cs" />
+    <Compile Include="Classes\Groups.cs" />
     <Compile Include="Classes\Messages.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Forms\BackEndTest.cs">
