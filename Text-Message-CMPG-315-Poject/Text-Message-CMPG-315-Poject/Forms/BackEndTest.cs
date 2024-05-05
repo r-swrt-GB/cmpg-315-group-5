@@ -33,7 +33,9 @@ namespace Text_Message_CMPG_315_Poject.Forms
             //This must be the login email
             string recipientEmail = "receiver@example.com";
             string senderEmail = "sender@example.com";
+            string groupTitle = "Group_Example_1";
             SetupRealTimeMessageListener(database, senderEmail, recipientEmail, listBox1);
+            SetupRealTimeGroupMessageListener(database, groupTitle);
             //DisplayMessagesBetweenUsers(senderEmail, recipientEmail);
         }
 
@@ -54,13 +56,18 @@ namespace Text_Message_CMPG_315_Poject.Forms
             return null;
         }
 
-        public async Task SendMessageAsync(FirestoreDb database, string senderEmail, string recipientEmail, string messageBody)
+        public async Task SendMessageAsync(FirestoreDb database, string senderEmail, string recipientEmail, string messageBody, string groupTitle = null)
         {
             //Ensure email receiver and sender exists
             string senderId = await FindUserIdByEmail(database, senderEmail);
-            string recipientId = await FindUserIdByEmail(database, recipientEmail);
+            string recipientId = null;
 
-            if (recipientId == null)
+            if(groupTitle == null)
+            {
+                recipientId = await FindUserIdByEmail(database, recipientEmail);
+            }
+
+            if (recipientId == null && groupTitle == null)
             {
                 MessageBox.Show("Recipient not found.");
                 return;
@@ -71,10 +78,19 @@ namespace Text_Message_CMPG_315_Poject.Forms
             {
                 body = messageBody,
                 created_at = DateTime.UtcNow,//UtcNwo used for FireStore requirement
-                recipient_id = recipientId,
                 sender_id = senderId,
                 read_at = null  //message hasn't been read 
+
             };
+
+            if (groupTitle != null)
+            {
+                newMessage.group_id = await FindGroupIdByTitle(database, groupTitle);
+            }
+            else
+            {
+                newMessage.recipient_id = recipientId;
+            }
 
             //Get firestore unique ID
             CollectionReference messagesCollection = database.Collection("messages");
@@ -436,5 +452,97 @@ namespace Text_Message_CMPG_315_Poject.Forms
 
             MessageBox.Show("new members added successfully!");
         }
+
+        public async Task<string> FindGroupIdByTitle(FirestoreDb database, string title)
+        {
+            CollectionReference groupsCollection = database.Collection("groups");
+            Query query = groupsCollection.WhereEqualTo("title", title);
+            QuerySnapshot snapshot = await query.GetSnapshotAsync();
+
+            if (snapshot.Count == 1)
+            {
+                DocumentSnapshot groupDocument = snapshot.Documents[0];
+                return groupDocument.Id;
+            }
+            return null;
+        }
+
+        // Send message to goup
+        private async void button4_Click(object sender, EventArgs e)
+        {
+            FirestoreDb database = FirestoreHelper.Database;
+            string senderEmail = "sender@example.com";
+            string groupTitle = "Group_Example_1";
+            string messageBody = "Test for group messages";
+
+            await SendMessageAsync(database, senderEmail, null, messageBody, groupTitle);
+        }
+
+         public async Task<List<Messages>> GetMessagesForGroupById(FirestoreDb database, string group_id)
+         {
+             List<Messages> messages = new List<Messages>();
+
+             CollectionReference messagesCollection = database.Collection("messages");
+             Query query = messagesCollection.WhereEqualTo("group_id", group_id);
+             QuerySnapshot snapshot = await query.GetSnapshotAsync();
+
+             foreach (DocumentSnapshot document in snapshot.Documents)
+             {
+                 messages.Add(document.ConvertTo<Messages>());
+             }
+
+             return messages;
+         }
+
+        public async Task SetupRealTimeGroupMessageListener(FirestoreDb database, string groupTitle)
+        {
+            await Task.Run(async () =>
+            {
+                // Get the group ID using the group name
+                string groupId = await FindGroupIdByTitle(database, groupTitle);
+
+                if (groupId != null)
+                {
+                    CollectionReference messagesCollection = database.Collection("messages");
+
+                    // Retrieve existing messages for the group
+                    List<Messages> existingMessages = await GetMessagesForGroupById(database, groupId);
+
+                    // Display existing messages in listBox2
+                    foreach (Messages message in existingMessages)
+                    {
+                        string senderEmail = await FindUserIdByEmail(database, message.sender_id);
+                        this.Invoke(new Action(() =>
+                        {
+                            listBox2.Items.Add($"Group: {groupTitle} | {senderEmail}: {message.body} - Sent at: {message.created_at.ToLocalTime()}");
+                        }));
+                    }
+
+                    // Setup listener for real-time updates in the specified group
+                    Query query = messagesCollection.WhereEqualTo("group_id", groupId);
+                    query.Listen(async snapshot =>  // Marking this lambda as async
+                    {
+                        foreach (DocumentChange change in snapshot.Changes)
+                        {
+                            if (change.ChangeType == DocumentChange.Type.Added)
+                            {
+                                Messages message = change.Document.ConvertTo<Messages>();
+                                string senderEmail = await FindUserIdByEmail(database, message.sender_id);
+                                this.Invoke(new Action(() =>
+                                {
+                                    listBox2.Items.Add($"Group: {groupTitle} | {senderEmail}: {message.body} - Sent at: {message.created_at.ToLocalTime()}");
+                                }));
+                            }
+                        }
+                    });
+                }
+                else
+                {
+                    MessageBox.Show("Group not found.");
+                }
+            });
+        }
+
     }
+
 }

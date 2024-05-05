@@ -35,6 +35,8 @@
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // button1
@@ -108,11 +110,32 @@
             this.comboBox1.Size = new System.Drawing.Size(163, 24);
             this.comboBox1.TabIndex = 11;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(45, 30);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(267, 94);
+            this.button4.TabIndex = 12;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 16;
+            this.listBox2.Location = new System.Drawing.Point(520, 12);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(480, 132);
+            this.listBox2.TabIndex = 13;
+            // 
             // BackEndTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1161, 795);
+            this.Controls.Add(this.listBox2);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.checkedListBox2);
             this.Controls.Add(this.checkedListBox1);
@@ -137,5 +160,7 @@
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.CheckedListBox checkedListBox2;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ListBox listBox2;
     }
 }
