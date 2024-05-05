@@ -390,50 +390,41 @@ namespace Text_Message_CMPG_315_Poject.Forms
             }
         }
 
-       
-        // adds new users to the groups
-        public async Task addNewUsers(string title, List<string> users)
+        public async Task addNewUsers(string title, List<string> newUsers)
         {
             try
             {
                 var database = FirestoreHelper.Database;
-                DocumentReference group = database.Collection("groups").Document(title);
+                // Query for the group by title
+                Query groupQuery = database.Collection("groups").WhereEqualTo("title", title);
+                QuerySnapshot groupSnapshot = await groupQuery.GetSnapshotAsync();
 
-                DocumentSnapshot snapshot = await group.GetSnapshotAsync();
-
-                if (!snapshot.Exists)
+                if (groupSnapshot.Count == 0)
                 {
-                    MessageBox.Show($"Group Document '{title}' not found");
+                    MessageBox.Show($"Group with the title '{title}' not found.");
                     return;
                 }
 
-                List<string> existingUsers = snapshot.GetValue<List<string>>("participants") ?? new List<string>();
+                DocumentSnapshot groupDocument = groupSnapshot.Documents[0]; // This only works if group names are unique since it will stop at the first one
+                List<string> existingUsers = groupDocument.GetValue<List<string>>("participants") ?? new List<string>();
 
-                List<string> updatedUsers = existingUsers.Union(users).ToList();
+                // Combine existing participants with new users and remove duplicates
+                List<string> updatedUsers = existingUsers.Union(newUsers).ToList();
 
-
-
-                // adds the new users to the database
-                Dictionary<string, object> update = new Dictionary<string, object>
+                // Update the group document with the new list of participants
+                Dictionary<string, object> updates = new Dictionary<string, object>
                 {
-
-                {"participants", updatedUsers },
-
+                    { "participants", updatedUsers }
                 };
+                await groupDocument.Reference.UpdateAsync(updates);
 
-                await group.UpdateAsync(update);
-
-                MessageBox.Show($"{users.Count} new users will be added to the group");
+                MessageBox.Show($"{newUsers.Count} new users have been added to the group '{title}'.");
             }
-            catch (Exception error)
+            catch (Exception ex)
             {
-                MessageBox.Show(error.Message);
+                MessageBox.Show("Failed to add new users: " + ex.Message);
             }
-           
-
-
         }
-
 
         private async void button2_Click(object sender, EventArgs e)
         {
