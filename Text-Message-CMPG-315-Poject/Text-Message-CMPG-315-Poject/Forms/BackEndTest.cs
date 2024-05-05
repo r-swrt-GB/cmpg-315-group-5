@@ -326,6 +326,7 @@ namespace Text_Message_CMPG_315_Poject.Forms
 
         }
 
+        //when the form loads, the combobox and checkedlistboxes are populated
         private async void BackEndTest_Load(object sender, EventArgs e)
         {
             FirestoreDb database = FirestoreHelper.Database;
@@ -352,6 +353,7 @@ namespace Text_Message_CMPG_315_Poject.Forms
             populateCombobox();
         }
 
+        // Get the group names from the database
         public async Task<List<string>> getGroupNames(FirestoreDb database)
         {
             List<string> names = new List<string>();
@@ -372,7 +374,7 @@ namespace Text_Message_CMPG_315_Poject.Forms
             return names;
         }
 
-
+        // populates the combobox with the group names
         public async void populateCombobox()
         {
             FirestoreDb database = FirestoreHelper.Database;
@@ -389,7 +391,7 @@ namespace Text_Message_CMPG_315_Poject.Forms
         }
 
        
-
+        // adds new users to the groups
         public async Task addNewUsers(string title, List<string> users)
         {
             try
@@ -411,7 +413,7 @@ namespace Text_Message_CMPG_315_Poject.Forms
 
 
 
-
+                // adds the new users to the database
                 Dictionary<string, object> update = new Dictionary<string, object>
                 {
 
