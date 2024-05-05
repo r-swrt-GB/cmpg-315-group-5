@@ -11,16 +11,16 @@
       "RelativeMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|solutionrelative:text-message-cmpg-315-poject\\forms\\backendtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\text-message-cmpg-315-poject\\classes\\groups.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|solutionrelative:text-message-cmpg-315-poject\\classes\\groups.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\text-message-cmpg-315-poject\\forms\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|solutionrelative:text-message-cmpg-315-poject\\forms\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\text-message-cmpg-315-poject\\forms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|solutionrelative:text-message-cmpg-315-poject\\forms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\text-message-cmpg-315-poject\\forms\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|solutionrelative:text-message-cmpg-315-poject\\forms\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\text-message-cmpg-315-poject\\classes\\groups.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|solutionrelative:text-message-cmpg-315-poject\\classes\\groups.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4707530D-D837-44C6-9BB2-D78E5B261E25}|Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject.csproj|C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\text-message-cmpg-315-poject\\forms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -54,7 +54,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Groups.cs",
               "DocumentMoniker": "C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Classes\\Groups.cs",
               "RelativeDocumentMoniker": "Text-Message-CMPG-315-Poject\\Classes\\Groups.cs",
@@ -73,7 +73,8 @@
               "ToolTip": "C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\Login.cs [Design]",
               "RelativeToolTip": "Text-Message-CMPG-315-Poject\\Forms\\Login.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-01T07:17:11.304Z"
+              "WhenOpened": "2024-05-01T07:17:11.304Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
@@ -83,7 +84,7 @@
               "RelativeDocumentMoniker": "Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.cs",
               "ToolTip": "C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.cs",
               "RelativeToolTip": "Text-Message-CMPG-315-Poject\\Forms\\BackEndTest.cs",
-              "ViewState": "AQIAAIgBAAAAAAAAAAAUwI0BAAANAAAA",
+              "ViewState": "AQIAAD4AAAAAAAAAAAAYwEMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-01T07:09:01.066Z",
               "EditorCaption": ""
@@ -98,18 +99,20 @@
               "RelativeToolTip": "Text-Message-CMPG-315-Poject\\Forms\\Login.cs",
               "ViewState": "AQIAACAAAAAAAAAAAAAIwB8AAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-01T07:17:21.467Z"
+              "WhenOpened": "2024-05-01T07:17:21.467Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "Register.cs [Design]",
               "DocumentMoniker": "C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\Register.cs",
               "RelativeDocumentMoniker": "Text-Message-CMPG-315-Poject\\Forms\\Register.cs",
               "ToolTip": "C:\\Users\\stefa\\projects\\Text-Message-CMPG-315-Poject\\Text-Message-CMPG-315-Poject\\Forms\\Register.cs [Design]",
               "RelativeToolTip": "Text-Message-CMPG-315-Poject\\Forms\\Register.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T18:51:29.115Z"
+              "WhenOpened": "2024-04-30T18:51:29.115Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

@@ -339,7 +339,7 @@ namespace Text_Message_CMPG_315_Poject.Forms
 
         private async void button3_Click_1(object sender, EventArgs e)
         {
-            string title = "Group_Example_1";
+            string title = "Group_Example_2";
             string description = "This is a test to see if the code works";
             string created_by = "sender@example.com";
             DateTime created_at = DateTime.UtcNow; // converts to firebase readable format
@@ -348,6 +348,8 @@ namespace Text_Message_CMPG_315_Poject.Forms
             CheckedListBox selectedListBox = getSelectedChecklistBox(checkedListBox2);
 
             await CreateGroup(selectedListBox, created_by, description, created_at, title);
+
+            populateCombobox();
         }
 
         public async Task<List<string>> getGroupNames(FirestoreDb database)
@@ -386,38 +388,60 @@ namespace Text_Message_CMPG_315_Poject.Forms
             }
         }
 
-        public async void AddNewUsersToSelectedGroup()
-        {
-            string selectedGroup = comboBox1.SelectedItem.ToString();
-            if (string.IsNullOrEmpty(selectedGroup))
-            {
-                MessageBox.Show("Please select a group!");
-                return;
-            }
-
-           // List<string> selectedUsers = getSelectedUsers(checkedListBox2);
-
-           // List<string> currentMembers = await GetGroupMembers(selectedGroup);
-
-            await addNewUsers(selectedGroup, selectedUsers);
-        }
+       
 
         public async Task addNewUsers(string title, List<string> users)
         {
-            var database = FirestoreHelper.Database;
-            DocumentReference group = database.Collection("groups").Document(title);
-
-            Dictionary<string, object> update = new Dictionary<string, object>
+            try
             {
-                {"participants", FieldValue.ArrayUnion(users) },
-            };
+                var database = FirestoreHelper.Database;
+                DocumentReference group = database.Collection("groups").Document(title);
+
+                DocumentSnapshot snapshot = await group.GetSnapshotAsync();
+
+                if (!snapshot.Exists)
+                {
+                    MessageBox.Show($"Group Document '{title}' not found");
+                    return;
+                }
+
+                List<string> existingUsers = snapshot.GetValue<List<string>>("participants") ?? new List<string>();
+
+                List<string> updatedUsers = existingUsers.Union(users).ToList();
+
+
+
+
+                Dictionary<string, object> update = new Dictionary<string, object>
+                {
+
+                {"participants", updatedUsers },
+
+                };
+
+                await group.UpdateAsync(update);
+
+                MessageBox.Show($"{users.Count} new users will be added to the group");
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+           
+
 
         }
 
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
+            List<string> selectedMembers = GetGroupMembers(checkedListBox1);
 
+            string selectedGroup = comboBox1.SelectedItem.ToString();
+
+            await addNewUsers(selectedGroup, selectedMembers);
+
+            MessageBox.Show("new members added successfully!");
         }
     }
 }
