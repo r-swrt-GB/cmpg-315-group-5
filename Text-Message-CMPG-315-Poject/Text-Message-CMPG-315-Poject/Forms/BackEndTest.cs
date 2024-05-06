@@ -263,6 +263,9 @@ namespace Text_Message_CMPG_315_Poject.Forms
 
             // the list contains all of the members selected from the checkedlistbox
             List<string> groupMembers = GetGroupMembers(checkedListBox);
+
+            groupMembers.Add(created_by);
+
             Dictionary<string, object> groupData = new Dictionary<string, object>
             {
                 { "participants", groupMembers},
@@ -308,6 +311,23 @@ namespace Text_Message_CMPG_315_Poject.Forms
                 }
             }
         }
+
+        // will finish once front-end and back-end are merged
+    /*
+        private void PopulateCheckboxList(List<User> users, string currentUserEmail)
+        {
+            // iterates through each user in the list
+            foreach (User user in users)
+            {
+                // ensures that the user object is not null and not the current user
+                if (user != null && !string.IsNullOrEmpty(user.Email) && user.Email != currentUserEmail)
+                {
+                    checkedListBox1.Items.Add(user.Email);
+                    checkedListBox2.Items.Add(user.Email);
+                }
+            }
+        }
+    */
 
         // checks to see if the group the user wants to create already exists
         public bool ifGroupExist(string title)
