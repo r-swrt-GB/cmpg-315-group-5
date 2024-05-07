@@ -10,8 +10,9 @@
 
 namespace ChatApp_CMPG315.Properties {
     using System;
-    
-    
+    using System.Drawing;
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,7 +24,10 @@ namespace ChatApp_CMPG315.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
-        
+        internal static Image icons8_lock_50;
+        internal static Image icons8_eye_60;
+        internal static Image icons8_person_48;
+        internal static Image icons8_close_window_48;
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ChatApp_CMPG315
 {
@@ -15,6 +16,32 @@ namespace ChatApp_CMPG315
         public Login()
         {
             InitializeComponent();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            //To Display the register form
+            Register reg = new Register();
+            this.Hide();
+            reg.Show();
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            //For password visibility or not if the eye next to the password field is clicked
+            if (cTxtPassword.PasswordChar == true)
+            {
+               cTxtPassword.PasswordChar = false;
+            }
+            else
+            {
+                cTxtPassword.PasswordChar = true;
+            }
         }
     }
 }
