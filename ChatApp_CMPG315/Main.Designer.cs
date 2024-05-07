@@ -181,7 +181,6 @@ namespace ChatApp_CMPG315
             // 
             // btnback
             // 
-            this.btnback.BackgroundImage = global::ChatApp_CMPG315.Properties.Resources.backbutton;
             this.btnback.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnback.InitialImage = ((System.Drawing.Image)(resources.GetObject("btnback.InitialImage")));
             this.btnback.Location = new System.Drawing.Point(43, 20);
@@ -194,7 +193,6 @@ namespace ChatApp_CMPG315
             // userProfile
             // 
             this.userProfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.userProfile.Image = global::ChatApp_CMPG315.Properties.Resources.Photo_on_2024_03_01_at_15_01;
             this.userProfile.InitialImage = ((System.Drawing.Image)(resources.GetObject("userProfile.InitialImage")));
             this.userProfile.Location = new System.Drawing.Point(43, 761);
             this.userProfile.Name = "userProfile";
@@ -205,9 +203,7 @@ namespace ChatApp_CMPG315
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::ChatApp_CMPG315.Properties.Resources.Speech;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Image = global::ChatApp_CMPG315.Properties.Resources.Speech;
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
             this.pictureBox1.Location = new System.Drawing.Point(549, -1);
             this.pictureBox1.Name = "pictureBox1";
@@ -219,7 +215,6 @@ namespace ChatApp_CMPG315
             // chatterProfile
             // 
             this.chatterProfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.chatterProfile.Image = global::ChatApp_CMPG315.Properties.Resources.Photo_on_2024_03_01_at_15_01;
             this.chatterProfile.InitialImage = ((System.Drawing.Image)(resources.GetObject("chatterProfile.InitialImage")));
             this.chatterProfile.Location = new System.Drawing.Point(18, 19);
             this.chatterProfile.Name = "chatterProfile";
