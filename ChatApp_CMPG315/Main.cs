@@ -63,16 +63,26 @@ namespace ChatApp_CMPG315
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             //onclick for create new contact ext
+            AddUsers users = new AddUsers();
+            this.Hide();
+            users.Show();
         }
 
         private void userProfile_Click(object sender, EventArgs e)
         {
             //user profile on click
+
+            ProfilePage prof = new ProfilePage();
+            this.Hide();
+            prof.Show();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             //onclickbackbbton
+            Login log = new Login();
+            this.Hide();
+            log.Show();
         }
     }
 }

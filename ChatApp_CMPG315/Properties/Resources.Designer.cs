@@ -10,9 +10,8 @@
 
 namespace ChatApp_CMPG315.Properties {
     using System;
-    using System.Drawing;
-
-
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -24,10 +23,7 @@ namespace ChatApp_CMPG315.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
-        internal static Image icons8_lock_50;
-        internal static Image icons8_eye_60;
-        internal static Image icons8_person_48;
-        internal static Image icons8_close_window_48;
+        
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
@@ -67,6 +63,26 @@ namespace ChatApp_CMPG315.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AddUser {
+            get {
+                object obj = ResourceManager.GetObject("AddUser", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AddUser1 {
+            get {
+                object obj = ResourceManager.GetObject("AddUser1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap backbutton {
             get {
                 object obj = ResourceManager.GetObject("backbutton", resourceCulture);
@@ -77,9 +93,89 @@ namespace ChatApp_CMPG315.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap backbutton1 {
+            get {
+                object obj = ResourceManager.GetObject("backbutton1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap backbutton2 {
+            get {
+                object obj = ResourceManager.GetObject("backbutton2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Chats {
             get {
                 object obj = ResourceManager.GetObject("Chats", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_close_window_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-close-window-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_eye_60 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-eye-60", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_lock_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-lock-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_lock_501 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-lock-501", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_lock_502 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-lock-502", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_person_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-person-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -110,6 +206,16 @@ namespace ChatApp_CMPG315.Properties {
         internal static System.Drawing.Bitmap speech_bubble_chat_talk_communication_icon_3d_background_illustration {
             get {
                 object obj = ResourceManager.GetObject("speech_bubble_chat_talk_communication_icon_3d_background_illustration", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TheSlap {
+            get {
+                object obj = ResourceManager.GetObject("TheSlap", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

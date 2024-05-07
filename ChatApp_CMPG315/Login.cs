@@ -43,5 +43,17 @@ namespace ChatApp_CMPG315
                 cTxtPassword.PasswordChar = true;
             }
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cButton1_Click(object sender, EventArgs e)
+        {
+            ChatForm chat = new ChatForm();
+            this.Hide();
+            chat.Show();
+        }
     }
 }
