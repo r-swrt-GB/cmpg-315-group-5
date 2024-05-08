@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatApp_CMPG315.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace ChatApp_CMPG315
         [STAThread]
         static void Main()
         {
+            FirestoreHelper.setEnvironmentVariable();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Login());
