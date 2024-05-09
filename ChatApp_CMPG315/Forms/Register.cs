@@ -130,7 +130,7 @@ namespace ChatApp_CMPG315
             password = HashPassword(password);
             registerUser(email,password,name,lastName);
 
-            ChatForm chat = new ChatForm();
+            ChatForm chat = new ChatForm(email);
             this.Hide();
             chat.Show();
         }

@@ -12,9 +12,11 @@ namespace ChatApp_CMPG315
 {
     public partial class ChatForm : Form
     {
-        public ChatForm()
+        public string userEmail;
+        public ChatForm(string userEmail)
         {
             InitializeComponent();
+            this.userEmail = userEmail;
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -37,6 +39,7 @@ namespace ChatApp_CMPG315
 
         private void cButton3_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(userEmail);
 
         }
 

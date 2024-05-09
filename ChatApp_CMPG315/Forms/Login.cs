@@ -100,7 +100,7 @@ namespace ChatApp_CMPG315
             User user = await GetUserByEmail(database, email);
             if (user != null && verifyPassword(password, user.Password))
             {
-                ChatForm chat = new ChatForm();
+                ChatForm chat = new ChatForm(email);
                 this.Hide();
                 chat.Show();
             }

@@ -12,6 +12,7 @@ namespace ChatApp_CMPG315
 {
     public partial class ProfilePage : Form
     {
+        public string userEmail = "";
         public ProfilePage()
         {
             InitializeComponent();
@@ -46,7 +47,7 @@ namespace ChatApp_CMPG315
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            ChatForm chat = new ChatForm();
+            ChatForm chat = new ChatForm(userEmail);
             this.Hide();
             chat.Show();
         }
