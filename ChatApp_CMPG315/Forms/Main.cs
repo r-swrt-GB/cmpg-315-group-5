@@ -100,41 +100,74 @@ namespace ChatApp_CMPG315
             }
         }
 
-        private void SetupRealTimeMessageListener(FirestoreDb database, string senderEmail, string receiverEmail)
+        /*        private void SetupRealTimeMessageListener(FirestoreDb database, string senderEmail, string receiverEmail)
+                {
+                    CollectionReference messagesCollection = database.Collection("messages");
+
+                    // Listen to messages in both directions
+                    Query query = messagesCollection
+                        .WhereIn("sender_id", new List<string> { senderEmail, receiverEmail })
+                        .WhereIn("recipient_id", new List<string> { senderEmail, receiverEmail })
+                        .OrderBy("created_at"); 
+
+                    query.Listen(snapshot =>
+                    {
+                        Invoke((MethodInvoker)delegate
+                        {
+                            foreach (DocumentChange change in snapshot.Changes)
+                            {
+                                if (change.ChangeType == DocumentChange.Type.Added || change.ChangeType == DocumentChange.Type.Modified)
+                                {
+                                    Messages message = change.Document.ConvertTo<Messages>();
+                                    UpdateListBox(message);
+                                }
+                            }
+                        });
+                    });
+                }
+
+
+                private void UpdateListBox(Messages message)
+                {
+                    string prefix = message.sender_id == userEmail ? "You: " : "Them: ";
+                    string displayText = $"{prefix} {message.created_at}: {message.body}";
+                    lstMessages.Items.Add(displayText);
+                    lstMessages.SelectedIndex = lstMessages.Items.Count - 1; // Scroll to the latest message
+                }*/
+
+        public void SetupRealTimeMessageListener(FirestoreDb database, string senderEmail, string receiverEmail, ListBox messageDisplayBox)
         {
             CollectionReference messagesCollection = database.Collection("messages");
 
-            // Listen to messages in both directions
-            Query query = messagesCollection
-                .WhereIn("sender_id", new List<string> { senderEmail, receiverEmail })
-                .WhereIn("recipient_id", new List<string> { senderEmail, receiverEmail })
-                .OrderBy("created_at"); // Ensure you have an index for this query
+            // Setup listener for messages where senderEmail is the sender and receiverEmail is the recipient
+            Query queryOne = messagesCollection
+                .WhereEqualTo("sender_id", senderEmail)
+                .WhereEqualTo("recipient_id", receiverEmail);
 
-            query.Listen(snapshot =>
-            {
-                Invoke((MethodInvoker)delegate
-                {
-                    foreach (DocumentChange change in snapshot.Changes)
-                    {
-                        if (change.ChangeType == DocumentChange.Type.Added || change.ChangeType == DocumentChange.Type.Modified)
-                        {
-                            Messages message = change.Document.ConvertTo<Messages>();
-                            UpdateListBox(message);
-                        }
-                    }
-                });
-            });
+            // Setup listener for messages where receiverEmail is the sender and senderEmail is the recipient
+            Query queryTwo = messagesCollection
+                .WhereEqualTo("sender_id", receiverEmail)
+                .WhereEqualTo("recipient_id", senderEmail);
+
+            // Listen for real-time updates from both queries
+            queryOne.Listen(snapshot => HandleDocumentChanges(snapshot, "You sent: ", messageDisplayBox));
+            queryTwo.Listen(snapshot => HandleDocumentChanges(snapshot, "They sent: ", messageDisplayBox));
         }
 
-        private void UpdateListBox(Messages message)
+        private void HandleDocumentChanges(QuerySnapshot snapshot, string messagePrefix, ListBox messageDisplayBox)
         {
-            string prefix = message.sender_id == userEmail ? "You: " : "Them: ";
-            string displayText = $"{prefix} {message.created_at}: {message.body}";
-            lstMessages.Items.Add(displayText);
-            lstMessages.SelectedIndex = lstMessages.Items.Count - 1; // Scroll to the latest message
+            foreach (DocumentChange change in snapshot.Changes)
+            {
+                if (change.ChangeType == DocumentChange.Type.Added)
+                {
+                    Messages message = change.Document.ConvertTo<Messages>();
+                    this.Invoke(new Action(() =>
+                    {
+                        messageDisplayBox.Items.Add($"{messagePrefix}{message.body} - Sent at: {message.created_at.ToLocalTime()}");
+                    }));
+                }
+            }
         }
-
-
 
 
         public async Task<List<string>> GetAllUserEmails(FirestoreDb database)
@@ -173,7 +206,7 @@ namespace ChatApp_CMPG315
             FirestoreDb database = FirestoreHelper.Database;
             string recipientEmail = receiver;
             string groupTitle = "Group_Example_1";
-            SetupRealTimeMessageListener(database, userEmail, recipientEmail);
+            SetupRealTimeMessageListener(database, userEmail, recipientEmail,lstMessages);
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -194,6 +227,8 @@ namespace ChatApp_CMPG315
             this.Height = 490;
 
             PopulateUserEmails();
+/*            FirestoreDb database = FirestoreHelper.Database;
+            SetupRealTimeMessageListener(database, userEmail, receiver, lstMessages);*/
         }
 
         private async void cButton3_Click(object sender, EventArgs e)
@@ -264,7 +299,7 @@ namespace ChatApp_CMPG315
                 lstMessages.Items.Clear();
                 string selectedEmail = lstUsers.SelectedItem.ToString();
                 receiver = selectedEmail;
-                SetupRealTimeMessageListener(database, userEmail, receiver);
+                //SetupRealTimeMessageListener(database, userEmail, receiver);
                 LoadInitialMessages(database, userEmail, receiver);
             }
         }
