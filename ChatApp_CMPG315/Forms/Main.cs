@@ -74,42 +74,82 @@ namespace ChatApp_CMPG315
             MessageBox.Show("Message sent successfully. ID: " + newDocRef.Id);
         }
 
-        public void SetupRealTimeMessageListener(FirestoreDb database, string senderEmail, string receiverEmail, ListBox messageDisplayBox)
+        public async Task<List<Messages>> GetMessagesBetweenUsers(FirestoreDb database, string senderEmail, string receiverEmail)
         {
-            Task.Run(() =>
+            List<Messages> messages = new List<Messages>();
+
+            // Fetch messages where userOne is the sender and userTwo is the recipient
+            CollectionReference messagesCollection = database.Collection("messages");
+            Query queryOne = messagesCollection
+                .WhereEqualTo("sender_id", senderEmail)
+                .WhereEqualTo("recipient_id", receiverEmail);
+            QuerySnapshot snapshotOne = await queryOne.GetSnapshotAsync();
+            foreach (DocumentSnapshot document in snapshotOne.Documents)
             {
-                CollectionReference messagesCollection = database.Collection("messages");
+                messages.Add(document.ConvertTo<Messages>());
+            }
 
-                // Setup listener for messages where userOne is the sender and userTwo is the recipient
-                Query queryOne = messagesCollection
-                    .WhereEqualTo("sender_id", senderEmail)
-                    .WhereEqualTo("recipient_id", receiverEmail);
+            // Fetch messages where userOne is the recipient and userTwo is the sender
+            Query queryTwo = messagesCollection
+                .WhereEqualTo("sender_id", receiverEmail)
+                .WhereEqualTo("recipient_id", senderEmail);
+            QuerySnapshot snapshotTwo = await queryTwo.GetSnapshotAsync();
+            foreach (DocumentSnapshot document in snapshotTwo.Documents)
+            {
+                messages.Add(document.ConvertTo<Messages>());
+            }
 
-                // Setup listener for messages where userOne is the recipient and userTwo is the sender
-                Query queryTwo = messagesCollection
-                    .WhereEqualTo("sender_id", receiverEmail)
-                    .WhereEqualTo("recipient_id", senderEmail);
+            // sort messages by created_at
+            messages.Sort((x, y) => DateTime.Compare(x.created_at, y.created_at));
 
-                // Listen for real-time updates from both queries
-                queryOne.Listen(snapshot => HandleDocumentChanges(snapshot, "You: ", messageDisplayBox));
-                queryTwo.Listen(snapshot => HandleDocumentChanges(snapshot, "Them: ", messageDisplayBox));
+            return messages;
+        }
+
+        private async void LoadInitialMessages(FirestoreDb database, string senderEmail, string recipientEmail)
+        {
+            // Load historical messages between the sender and the new recipient
+            List<Messages> messages = await GetMessagesBetweenUsers(database, senderEmail, recipientEmail);
+            foreach (var message in messages)
+            {
+                lstMessages.Items.Add($"{message.created_at}: {message.body}");
+            }
+        }
+
+        private void SetupRealTimeMessageListener(FirestoreDb database, string senderEmail, string receiverEmail)
+        {
+            CollectionReference messagesCollection = database.Collection("messages");
+
+            // Listen to messages in both directions
+            Query query = messagesCollection
+                .WhereIn("sender_id", new List<string> { senderEmail, receiverEmail })
+                .WhereIn("recipient_id", new List<string> { senderEmail, receiverEmail })
+                .OrderBy("created_at"); // Ensure you have an index for this query
+
+            query.Listen(snapshot =>
+            {
+                Invoke((MethodInvoker)delegate
+                {
+                    foreach (DocumentChange change in snapshot.Changes)
+                    {
+                        if (change.ChangeType == DocumentChange.Type.Added || change.ChangeType == DocumentChange.Type.Modified)
+                        {
+                            Messages message = change.Document.ConvertTo<Messages>();
+                            UpdateListBox(message);
+                        }
+                    }
+                });
             });
         }
 
-        private void HandleDocumentChanges(QuerySnapshot snapshot, string messagePrefix, ListBox messageDisplayBox)
+        private void UpdateListBox(Messages message)
         {
-            foreach (DocumentChange change in snapshot.Changes)
-            {
-                if (change.ChangeType == DocumentChange.Type.Added)
-                {
-                    Messages message = change.Document.ConvertTo<Messages>();
-                    this.Invoke(new Action(() =>
-                    {
-                        messageDisplayBox.Items.Add($"{messagePrefix}{message.body} - Sent at: {message.created_at.ToLocalTime()}");
-                    }));
-                }
-            }
+            string displayText = $"{message.created_at}: {message.body}";
+            lstMessages.Items.Add(displayText);
+            lstMessages.SelectedIndex = lstMessages.Items.Count - 1; // Scroll to the latest message
         }
+
+
+
 
         public async Task<List<string>> GetAllUserEmails(FirestoreDb database)
         {
@@ -147,7 +187,7 @@ namespace ChatApp_CMPG315
             FirestoreDb database = FirestoreHelper.Database;
             string recipientEmail = receiver;
             string groupTitle = "Group_Example_1";
-            SetupRealTimeMessageListener(database, userEmail, recipientEmail, lstMessages);
+            SetupRealTimeMessageListener(database, userEmail, recipientEmail);
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -230,11 +270,14 @@ namespace ChatApp_CMPG315
 
         private void lstUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
+            FirestoreDb database = FirestoreHelper.Database;
             if (lstUsers.SelectedItem != null)
             {
                 lstMessages.Items.Clear();
                 string selectedEmail = lstUsers.SelectedItem.ToString();
                 receiver = selectedEmail;
+                SetupRealTimeMessageListener(database, userEmail, receiver);
+                LoadInitialMessages(database, userEmail, receiver);
                 MessageBox.Show("Selected email: " + selectedEmail); // Example usage
             }
         }
