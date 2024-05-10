@@ -60,9 +60,10 @@ namespace ChatApp_CMPG315
             this.pnlMessages.Controls.Add(this.chatterProfile);
             this.pnlMessages.Controls.Add(this.txtbxSendMessage);
             this.pnlMessages.Controls.Add(this.btnSendMessage);
-            this.pnlMessages.Location = new System.Drawing.Point(823, -9);
+            this.pnlMessages.Location = new System.Drawing.Point(412, -5);
+            this.pnlMessages.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlMessages.Name = "pnlMessages";
-            this.pnlMessages.Size = new System.Drawing.Size(997, 905);
+            this.pnlMessages.Size = new System.Drawing.Size(500, 472);
             this.pnlMessages.TabIndex = 6;
             // 
             // lblChatterUsername
@@ -70,9 +71,10 @@ namespace ChatApp_CMPG315
             this.lblChatterUsername.AutoSize = true;
             this.lblChatterUsername.Font = new System.Drawing.Font("Trebuchet MS", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblChatterUsername.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblChatterUsername.Location = new System.Drawing.Point(139, 43);
+            this.lblChatterUsername.Location = new System.Drawing.Point(70, 22);
+            this.lblChatterUsername.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblChatterUsername.Name = "lblChatterUsername";
-            this.lblChatterUsername.Size = new System.Drawing.Size(239, 49);
+            this.lblChatterUsername.Size = new System.Drawing.Size(123, 26);
             this.lblChatterUsername.TabIndex = 7;
             this.lblChatterUsername.Text = "@Username";
             // 
@@ -82,10 +84,10 @@ namespace ChatApp_CMPG315
             this.lstMessages.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lstMessages.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.lstMessages.FormattingEnabled = true;
-            this.lstMessages.ItemHeight = 25;
-            this.lstMessages.Location = new System.Drawing.Point(-1, 153);
+            this.lstMessages.Location = new System.Drawing.Point(0, 80);
+            this.lstMessages.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lstMessages.Name = "lstMessages";
-            this.lstMessages.Size = new System.Drawing.Size(977, 625);
+            this.lstMessages.Size = new System.Drawing.Size(488, 325);
             this.lstMessages.TabIndex = 6;
             // 
             // chatterProfile
@@ -93,9 +95,10 @@ namespace ChatApp_CMPG315
             this.chatterProfile.BackgroundImage = global::ChatApp_CMPG315.Properties.Resources.Photo_on_2024_03_01_at_15_01;
             this.chatterProfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.chatterProfile.InitialImage = ((System.Drawing.Image)(resources.GetObject("chatterProfile.InitialImage")));
-            this.chatterProfile.Location = new System.Drawing.Point(18, 19);
+            this.chatterProfile.Location = new System.Drawing.Point(9, 10);
+            this.chatterProfile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chatterProfile.Name = "chatterProfile";
-            this.chatterProfile.Size = new System.Drawing.Size(100, 105);
+            this.chatterProfile.Size = new System.Drawing.Size(50, 55);
             this.chatterProfile.TabIndex = 2;
             this.chatterProfile.TabStop = false;
             // 
@@ -107,13 +110,12 @@ namespace ChatApp_CMPG315
             this.txtbxSendMessage.BorderSize = 2;
             this.txtbxSendMessage.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtbxSendMessage.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.txtbxSendMessage.Location = new System.Drawing.Point(6, 812);
-            this.txtbxSendMessage.Margin = new System.Windows.Forms.Padding(6);
+            this.txtbxSendMessage.Location = new System.Drawing.Point(3, 422);
             this.txtbxSendMessage.Multiline = false;
             this.txtbxSendMessage.Name = "txtbxSendMessage";
-            this.txtbxSendMessage.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.txtbxSendMessage.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.txtbxSendMessage.PasswordChar = false;
-            this.txtbxSendMessage.Size = new System.Drawing.Size(844, 52);
+            this.txtbxSendMessage.Size = new System.Drawing.Size(422, 31);
             this.txtbxSendMessage.TabIndex = 5;
             this.txtbxSendMessage.Texts = "Message @Username";
             this.txtbxSendMessage.UnderlinedStyle = false;
@@ -129,10 +131,10 @@ namespace ChatApp_CMPG315
             this.btnSendMessage.FlatAppearance.BorderSize = 0;
             this.btnSendMessage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSendMessage.ForeColor = System.Drawing.Color.White;
-            this.btnSendMessage.Location = new System.Drawing.Point(853, 809);
-            this.btnSendMessage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSendMessage.Location = new System.Drawing.Point(426, 421);
+            this.btnSendMessage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnSendMessage.Name = "btnSendMessage";
-            this.btnSendMessage.Size = new System.Drawing.Size(123, 61);
+            this.btnSendMessage.Size = new System.Drawing.Size(62, 32);
             this.btnSendMessage.TabIndex = 2;
             this.btnSendMessage.Text = "Slap 👏";
             this.btnSendMessage.TextColor = System.Drawing.Color.White;
@@ -145,9 +147,10 @@ namespace ChatApp_CMPG315
             this.pnlUsers.Controls.Add(this.lstUsers);
             this.pnlUsers.Controls.Add(this.pictureBox1);
             this.pnlUsers.Controls.Add(this.label1);
-            this.pnlUsers.Location = new System.Drawing.Point(170, -9);
+            this.pnlUsers.Location = new System.Drawing.Point(85, -5);
+            this.pnlUsers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlUsers.Name = "pnlUsers";
-            this.pnlUsers.Size = new System.Drawing.Size(654, 905);
+            this.pnlUsers.Size = new System.Drawing.Size(328, 472);
             this.pnlUsers.TabIndex = 7;
             // 
             // lstUsers
@@ -157,24 +160,27 @@ namespace ChatApp_CMPG315
             this.lstUsers.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstUsers.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lstUsers.FormattingEnabled = true;
-            this.lstUsers.ItemHeight = 40;
+            this.lstUsers.ItemHeight = 22;
             this.lstUsers.Items.AddRange(new object[] {
             "@user1",
             "@user2",
             "@user3"});
-            this.lstUsers.Location = new System.Drawing.Point(-1, 107);
+            this.lstUsers.Location = new System.Drawing.Point(0, 56);
+            this.lstUsers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lstUsers.Name = "lstUsers";
-            this.lstUsers.Size = new System.Drawing.Size(654, 760);
+            this.lstUsers.Size = new System.Drawing.Size(327, 374);
             this.lstUsers.TabIndex = 7;
+            this.lstUsers.SelectedIndexChanged += new System.EventHandler(this.lstUsers_SelectedIndexChanged);
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = global::ChatApp_CMPG315.Properties.Resources.AddUser1;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(549, 19);
+            this.pictureBox1.Location = new System.Drawing.Point(274, 10);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(104, 105);
+            this.pictureBox1.Size = new System.Drawing.Size(52, 55);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -184,9 +190,10 @@ namespace ChatApp_CMPG315
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Trebuchet MS", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(12, 19);
+            this.label1.Location = new System.Drawing.Point(6, 10);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 49);
+            this.label1.Size = new System.Drawing.Size(64, 26);
             this.label1.TabIndex = 0;
             this.label1.Text = "Chats";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -196,9 +203,10 @@ namespace ChatApp_CMPG315
             this.pnlProfile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlProfile.Controls.Add(this.btnback);
             this.pnlProfile.Controls.Add(this.userProfile);
-            this.pnlProfile.Location = new System.Drawing.Point(-6, -9);
+            this.pnlProfile.Location = new System.Drawing.Point(-3, -5);
+            this.pnlProfile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlProfile.Name = "pnlProfile";
-            this.pnlProfile.Size = new System.Drawing.Size(176, 905);
+            this.pnlProfile.Size = new System.Drawing.Size(89, 472);
             this.pnlProfile.TabIndex = 8;
             this.pnlProfile.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
@@ -208,9 +216,10 @@ namespace ChatApp_CMPG315
             this.btnback.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnback.ErrorImage = null;
             this.btnback.InitialImage = ((System.Drawing.Image)(resources.GetObject("btnback.InitialImage")));
-            this.btnback.Location = new System.Drawing.Point(43, 20);
+            this.btnback.Location = new System.Drawing.Point(22, 10);
+            this.btnback.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnback.Name = "btnback";
-            this.btnback.Size = new System.Drawing.Size(100, 104);
+            this.btnback.Size = new System.Drawing.Size(50, 54);
             this.btnback.TabIndex = 8;
             this.btnback.TabStop = false;
             this.btnback.Click += new System.EventHandler(this.pictureBox2_Click);
@@ -220,24 +229,25 @@ namespace ChatApp_CMPG315
             this.userProfile.BackgroundImage = global::ChatApp_CMPG315.Properties.Resources.Photo_on_2024_03_01_at_15_01;
             this.userProfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.userProfile.InitialImage = ((System.Drawing.Image)(resources.GetObject("userProfile.InitialImage")));
-            this.userProfile.Location = new System.Drawing.Point(43, 761);
+            this.userProfile.Location = new System.Drawing.Point(22, 396);
+            this.userProfile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.userProfile.Name = "userProfile";
-            this.userProfile.Size = new System.Drawing.Size(100, 105);
+            this.userProfile.Size = new System.Drawing.Size(50, 55);
             this.userProfile.TabIndex = 1;
             this.userProfile.TabStop = false;
             this.userProfile.Click += new System.EventHandler(this.userProfile_Click);
             // 
             // ChatForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1800, 879);
+            this.ClientSize = new System.Drawing.Size(900, 457);
             this.Controls.Add(this.pnlProfile);
             this.Controls.Add(this.pnlUsers);
             this.Controls.Add(this.pnlMessages);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.MaximizeBox = false;
             this.Name = "ChatForm";
             this.Text = "TheSlap";

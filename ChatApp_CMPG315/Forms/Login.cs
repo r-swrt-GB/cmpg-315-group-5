@@ -46,13 +46,14 @@ namespace ChatApp_CMPG315
             return true;
         }
 
-        public void loginUser(string email)
+        //Replaced with GetUserByEmail
+        /*public void loginUser(string email)
         {
             var database = FirestoreHelper.Database;
 
             DocumentReference documentReference = database.Collection("users").Document(email);
             User user = documentReference.GetSnapshotAsync().Result.ConvertTo<User>();
-        }
+        }*/
 
         public Login()
         {
