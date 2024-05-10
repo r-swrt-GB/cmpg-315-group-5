@@ -2,11 +2,7 @@
 using Google.Cloud.Firestore;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,6 +12,10 @@ namespace ChatApp_CMPG315
     {
         public string userEmail;
         public string receiver;
+
+        private User user;
+        private FirestoreDb database = FirestoreHelper.Database;
+
         public async Task<string> FindGroupIdByTitle(FirestoreDb database, string title)
         {
             CollectionReference groupsCollection = database.Collection("groups");
@@ -39,7 +39,7 @@ namespace ChatApp_CMPG315
                 body = messageBody,
                 created_at = DateTime.UtcNow,//UtcNwo used for FireStore requirement
                 sender_id = senderEmail,
-                read_at = null 
+                read_at = null
 
             };
 
@@ -186,27 +186,42 @@ namespace ChatApp_CMPG315
             return userEmails;
         }
 
-        public async void PopulateUserEmails()
+        public void PopulateUserEmails()
         {
-            FirestoreDb database = FirestoreHelper.Database; 
-            List<string> userEmails = await GetAllUserEmails(database);
+            //List<string> userEmails = await GetAllUserEmails(database);
 
-            lstUsers.Items.Clear(); 
-            foreach (string email in userEmails)
+            lstUsers.Items.Clear();
+
+            if (user.ContactUsers.Count > 0)
             {
-                lstUsers.Items.Add(email); 
+                //TODO FIX AFTER ADDING TO DISPLAY
+                foreach (User user in user.ContactUsers)
+                {
+                    lstUsers.Items.Add(user.Name + " " + user.LastName);
+                }
+            }
+            else
+            {
+                lstUsers.Items.Add("Add a contact to start slapping");
             }
         }
 
 
-        public ChatForm(string userEmail)
+        public ChatForm(User user)
         {
             InitializeComponent();
-            this.userEmail = userEmail;
+
+            this.user = user;
+            userEmail = user.Email;
+
             FirestoreDb database = FirestoreHelper.Database;
+
             string recipientEmail = receiver;
             string groupTitle = "Group_Example_1";
-            SetupRealTimeMessageListener(database, userEmail, recipientEmail,lstMessages);
+
+            SetupRealTimeMessageListener(database, userEmail, recipientEmail, lstMessages);
+
+            PopulateUserEmails();
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -225,10 +240,8 @@ namespace ChatApp_CMPG315
 
             this.Width = 915;
             this.Height = 490;
-
-            PopulateUserEmails();
-/*            FirestoreDb database = FirestoreHelper.Database;
-            SetupRealTimeMessageListener(database, userEmail, receiver, lstMessages);*/
+            /*            FirestoreDb database = FirestoreHelper.Database;
+                        SetupRealTimeMessageListener(database, userEmail, receiver, lstMessages);*/
         }
 
         private async void cButton3_Click(object sender, EventArgs e)
@@ -269,7 +282,7 @@ namespace ChatApp_CMPG315
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             //onclick for create new contact ext
-            AddUsers users = new AddUsers();
+            AddUsers users = new AddUsers(user);
             this.Hide();
             users.Show();
         }
@@ -278,7 +291,7 @@ namespace ChatApp_CMPG315
         {
             //user profile on click
 
-            ProfilePage prof = new ProfilePage();
+            ProfilePage prof = new ProfilePage(user);
             this.Hide();
             prof.Show();
         }
@@ -302,6 +315,16 @@ namespace ChatApp_CMPG315
                 //SetupRealTimeMessageListener(database, userEmail, receiver);
                 LoadInitialMessages(database, userEmail, receiver);
             }
+        }
+
+        private void lstMessages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ChatForm_Shown(object sender, EventArgs e)
+        {
+            PopulateUserEmails();
         }
     }
 }

@@ -2,12 +2,8 @@
 using Google.Cloud.Firestore;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,115 +11,136 @@ namespace ChatApp_CMPG315
 {
     public partial class AddUsers : Form
     {
-        public string userEmail = "";
+        private User user;
 
-        string selectedUsers = "";
-
-        public AddUsers()
+        public AddUsers(User user)
         {
             InitializeComponent();
+
+            this.user = user;
         }
 
-        // list that contains all of the user email addresses
-        public async Task<List<User>> GetAllUsers(FirestoreDb database)
+        public static bool IsValidEmail(string email)
         {
-            // gets reference to the users collection in the database
-            CollectionReference userCollection = database.Collection("users");
+            string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
 
-            //retrieve a snapshot of the documents in the collection
-            QuerySnapshot snapshot = await userCollection.GetSnapshotAsync();
+            Regex regex = new Regex(pattern);
 
-
-            // initialise a list to store the user objects
-            List<User> users = new List<User>();
-
-            // iterate through each document snapshot in the snapshot
-            foreach (DocumentSnapshot documentSnapshot in snapshot.Documents)
-            {
-                // convert the snapshots to a user object and adds it to the list
-                User user = documentSnapshot.ConvertTo<User>();
-                users.Add(user);
-            }
-            return users;
+            return regex.IsMatch(email);
         }
 
-
-        private void btnCreateGroup_Click(object sender, EventArgs e)
+        public bool ValidateForm(string email)
         {
-
-            string email = txtEmail.Text;
-
-            //groupName is empty
-            if (string.IsNullOrEmpty(selectedUsers) && string.IsNullOrEmpty(txtGroupName.Texts))
+            if (string.IsNullOrEmpty(email))
             {
-                MessageBox.Show("Please enter a Group Name and Select users in order to create a group");
+                displayWarning("Email field is required.");
+                cTxtUserName.Focus();
+                return false;
+            }
+
+            if (!IsValidEmail(email))
+            {
+                displayWarning("Invalid email. Please enter a valid email and try again.");
+                cTxtUserName.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        public void displayWarning(string message)
+        {
+            MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        public async Task<User> GetUserByEmail(FirestoreDb database, string email)
+        {
+            DocumentReference docRef = database.Collection("users").Document(email);
+            DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+
+            if (snapshot.Exists)
+            {
+                return snapshot.ConvertTo<User>();
+            }
+
+            return null;
+        }
+
+        private async Task<User> ExistingUser(FirestoreDb database, string email)
+        {
+            User user = await GetUserByEmail(database, email);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            return user;
+        }
+
+        private async Task AddContact(FirestoreDb database, User contact)
+        {
+            DocumentReference userRef = database.Collection("users").Document(user.Email);
+
+            DocumentSnapshot userSnapshot = await userRef.GetSnapshotAsync();
+            List<string> contacts = userSnapshot.Exists ? userSnapshot.GetValue<List<string>>("ContactEmails") ?? new List<string>() : new List<string>();
+
+            if (contact.Email == user.Email)
+            {
+                displayWarning("Please do not talk to yourself. Seek help. Seek HR :)");
                 return;
             }
-            else if (string.IsNullOrEmpty(txtGroupName.Texts))
+
+
+            if (!contacts.Contains(contact.Email))
             {
-                MessageBox.Show("The group must have a name");
-                return;
-            }
-            else if (string.IsNullOrEmpty(selectedUsers))
-            {
-                MessageBox.Show("Must at least select one user for group");
-                return;
+                contacts.Add(contact.Email);
+                user.ContactEmails.Append(contact.Email);
+                user.ContactUsers.Append(contact);
+
+                await userRef.UpdateAsync("ContactEmails", contacts);
+
+                MessageBox.Show(contact.Name + " " + contact.LastName + " has been successfully added. Happy slapping!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-
-                //rest of database functions
-                MessageBox.Show("Group Created Successfully");
-            }
-
-            ChatForm chat = new ChatForm(userEmail);
-            this.Hide();
-            chat.Show();
-        }
-
-        private void cbxUsers_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            selectedUsers = cbxUsers.Text + '\n' + selectedUsers;
-            richSelectedUsers.Text = selectedUsers;
-        }
-
-        private void AddUsers_Load(object sender, EventArgs e)
-        {
-            //cbxUsers.items word gefull met database users (users wat die persoon will add na die database)
-
-            //test
-            cbxUsers.Items.Add("name");
-            cbxUsers.Items.Add("Surname");
-            cbxUsers.Items.Add("User");
-        }
-
-        private void btnSlap_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtEmail.Texts))
-            {
-                MessageBox.Show("Enter the email of a user");
+                displayWarning("This person is already added to your contacts.");
                 return;
             }
-            else 
+
+            ChatForm chat = new ChatForm(user);
+            Close();
+            chat.Show();
+        }
+
+        private async void btnSlap_Click(object sender, EventArgs e)
+        {
+            string contactEmail = cTxtUserName.Texts;
+
+            if (ValidateForm(contactEmail))
             {
-                MessageBox.Show("Added successfully");
+                FirestoreDb database = FirestoreHelper.Database;
+
+                User existingUser = await ExistingUser(database, contactEmail);
+
+                if (existingUser != null)
+                {
+                    await AddContact(database, existingUser);
+                }
+                else
+                {
+                    displayWarning("No existing user found with the specified email. Please try again.");
+                    return;
+                }
             }
-
-            ChatForm chat = new ChatForm(userEmail);
-            this.Hide();
-            chat.Show();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void cButton1_Click(object sender, EventArgs e)
         {
+            Close();
 
-        }
-
-        private void cButton4_Click(object sender, EventArgs e)
-        {
-            ChatForm chat = new ChatForm(userEmail);
-            this.Hide();
-            chat.Show();
+            ChatForm chatForm = new ChatForm(user);
+            chatForm.Show();
         }
     }
 }

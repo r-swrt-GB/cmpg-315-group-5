@@ -18,5 +18,8 @@ namespace ChatApp_CMPG315.Classes
         public string Name { get; set; }
         [FirestoreProperty]
         public string LastName { get; set; }
+        [FirestoreProperty]
+        public List<string> ContactEmails { get; set; }
+        public List<User> ContactUsers { get; set; }
     }
 }

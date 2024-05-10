@@ -2,16 +2,10 @@
 using Google.Cloud.Firestore;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace ChatApp_CMPG315
 {
@@ -24,11 +18,31 @@ namespace ChatApp_CMPG315
 
             if (snapshot.Exists)
             {
-                return snapshot.ConvertTo<User>();
+                User user = snapshot.ConvertTo<User>();
+
+                List<User> contactUsers = new List<User>();
+                foreach (string contactEmail in user.ContactEmails)
+                {
+                    if (!string.IsNullOrEmpty(contactEmail))
+                    {
+                        DocumentReference contactDocRef = database.Collection("users").Document(contactEmail);
+                        DocumentSnapshot contactSnapshot = await contactDocRef.GetSnapshotAsync();
+                        if (contactSnapshot.Exists)
+                        {
+                            User contactUser = contactSnapshot.ConvertTo<User>();
+                            contactUsers.Add(contactUser);
+                        }
+                    }
+                }
+
+                user.ContactUsers = contactUsers;
+
+                return user;
             }
 
-            return null; 
+            return null;
         }
+
 
 
         public bool verifyPassword(string password, string passwordhash)
@@ -73,12 +87,12 @@ namespace ChatApp_CMPG315
             reg.Show();
         }
 
-        private void pictureBox5_Click(object sender, EventArgs e)
+        public void TogglePassword()
         {
             //For password visibility or not if the eye next to the password field is clicked
             if (cTxtPassword.PasswordChar == true)
             {
-               cTxtPassword.PasswordChar = false;
+                cTxtPassword.PasswordChar = false;
             }
             else
             {
@@ -86,29 +100,78 @@ namespace ChatApp_CMPG315
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        public void displayWarning(string message)
         {
-
+            MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
+
+        public static bool IsValidEmail(string email)
+        {
+            string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+
+            Regex regex = new Regex(pattern);
+
+            return regex.IsMatch(email);
+        }
+
+        public bool ValidateLogin(string email, string password)
+        {
+            if (string.IsNullOrEmpty(email))
+            {
+                displayWarning("Email field is required.");
+                cTxtUserName.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(password))
+            {
+                displayWarning("Password field is required.");
+                cTxtPassword.Focus();
+                return false;
+            }
+
+            if (!IsValidEmail(email))
+            {
+                displayWarning("Invalid email. Please enter a valid email and try again.");
+                cTxtUserName.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
 
         private async void cButton1_Click(object sender, EventArgs e)
         {
-            string email = cTxtUserName.Texts; 
+            string email = cTxtUserName.Texts;
             string password = cTxtPassword.Texts;
 
-            FirestoreDb database = FirestoreHelper.Database;
+            if (ValidateLogin(email, password))
+            {
+                FirestoreDb database = FirestoreHelper.Database;
 
-            User user = await GetUserByEmail(database, email);
-            if (user != null && verifyPassword(password, user.Password))
-            {
-                ChatForm chat = new ChatForm(email);
-                this.Hide();
-                chat.Show();
+                User user = await GetUserByEmail(database, email);
+                if (user != null && verifyPassword(password, user.Password))
+                {
+                    ChatForm chat = new ChatForm(user);
+                    this.Hide();
+                    chat.Show();
+                }
+                else
+                {
+                    displayWarning("Invalid email or password. Please try again.");
+                }
             }
-            else
-            {
-                MessageBox.Show("Invalid email or password");
-            }
+        }
+
+        private void pictureBox5_MouseEnter(object sender, EventArgs e)
+        {
+            TogglePassword();
+        }
+
+        private void pictureBox5_MouseLeave(object sender, EventArgs e)
+        {
+            TogglePassword();
         }
     }
 }
