@@ -16,22 +16,6 @@ namespace ChatApp_CMPG315
     {
         public string userEmail;
         public string receiver;
-
-        public async Task<string> FindUserIdByEmail(FirestoreDb database, string email)
-        {
-            CollectionReference usersCollection = database.Collection("users");
-            Query query = usersCollection.WhereEqualTo("Email", email);
-            QuerySnapshot snapshot = await query.GetSnapshotAsync();
-
-            //Ensure only one email
-            if (snapshot.Count == 1)
-            {
-                DocumentSnapshot userDocument = snapshot.Documents[0];
-                return userDocument.Id;
-            }
-            return null;
-        }
-
         public async Task<string> FindGroupIdByTitle(FirestoreDb database, string title)
         {
             CollectionReference groupsCollection = database.Collection("groups");
@@ -111,7 +95,8 @@ namespace ChatApp_CMPG315
             List<Messages> messages = await GetMessagesBetweenUsers(database, senderEmail, recipientEmail);
             foreach (var message in messages)
             {
-                lstMessages.Items.Add($"{message.created_at}: {message.body}");
+                string prefix = message.sender_id == senderEmail ? "You: " : "Them: ";
+                lstMessages.Items.Add($"{prefix} {message.created_at}: {message.body}");
             }
         }
 
@@ -143,7 +128,8 @@ namespace ChatApp_CMPG315
 
         private void UpdateListBox(Messages message)
         {
-            string displayText = $"{message.created_at}: {message.body}";
+            string prefix = message.sender_id == userEmail ? "You: " : "Them: ";
+            string displayText = $"{prefix} {message.created_at}: {message.body}";
             lstMessages.Items.Add(displayText);
             lstMessages.SelectedIndex = lstMessages.Items.Count - 1; // Scroll to the latest message
         }
@@ -218,8 +204,10 @@ namespace ChatApp_CMPG315
             string senderEamil = userEmail;
             string messageBody = txtbxSendMessage.Texts;
 
-            await SendMessageAsync(database, senderEamil, recipientEmail, messageBody);
             txtbxSendMessage.Texts = null;
+            lstMessages.Items.Clear();
+            await SendMessageAsync(database, senderEamil, recipientEmail, messageBody);
+            LoadInitialMessages(database, userEmail, receiver);
 
         }
 
@@ -278,7 +266,6 @@ namespace ChatApp_CMPG315
                 receiver = selectedEmail;
                 SetupRealTimeMessageListener(database, userEmail, receiver);
                 LoadInitialMessages(database, userEmail, receiver);
-                MessageBox.Show("Selected email: " + selectedEmail); // Example usage
             }
         }
     }
