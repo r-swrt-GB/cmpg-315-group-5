@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ChatApp_CMPG315.Classes;
+using Google.Cloud.Firestore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,8 +24,29 @@ namespace ChatApp_CMPG315
             InitializeComponent();
         }
 
+        // list that contains all of the user email addresses
+        public async Task<List<User>> GetAllUsers(FirestoreDb database)
+        {
+            // gets reference to the users collection in the database
+            CollectionReference userCollection = database.Collection("users");
 
-        
+            //retrieve a snapshot of the documents in the collection
+            QuerySnapshot snapshot = await userCollection.GetSnapshotAsync();
+
+
+            // initialise a list to store the user objects
+            List<User> users = new List<User>();
+
+            // iterate through each document snapshot in the snapshot
+            foreach (DocumentSnapshot documentSnapshot in snapshot.Documents)
+            {
+                // convert the snapshots to a user object and adds it to the list
+                User user = documentSnapshot.ConvertTo<User>();
+                users.Add(user);
+            }
+            return users;
+        }
+
 
         private void btnCreateGroup_Click(object sender, EventArgs e)
         {
