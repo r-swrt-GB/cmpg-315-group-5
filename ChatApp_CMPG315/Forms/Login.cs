@@ -2,6 +2,7 @@
 using Google.Cloud.Firestore;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -11,6 +12,12 @@ namespace ChatApp_CMPG315
 {
     public partial class Login : Form
     {
+        public string userEmail
+        {
+            get { return cTxtUserName.Text; }
+            set { cTxtUserName.Texts = value; }
+        }
+
         public async Task<User> GetUserByEmail(FirestoreDb database, string email)
         {
             DocumentReference docRef = database.Collection("users").Document(email);
@@ -150,17 +157,16 @@ namespace ChatApp_CMPG315
             {
                 FirestoreDb database = FirestoreHelper.Database;
 
-                User user = await GetUserByEmail(database, email);
-                if (user != null && verifyPassword(password, user.Password))
-                {
-                    ChatForm chat = new ChatForm(user);
-                    this.Hide();
-                    chat.Show();
-                }
-                else
-                {
-                    displayWarning("Invalid email or password. Please try again.");
-                }
+            User user = await GetUserByEmail(database, email);
+            if (user != null && verifyPassword(password, user.Password))
+            {
+                ChatForm chat = new ChatForm(email);
+                this.Hide();
+                chat.Show();
+            }
+            else
+            {
+                MessageBox.Show("Invalid email or password");
             }
         }
 

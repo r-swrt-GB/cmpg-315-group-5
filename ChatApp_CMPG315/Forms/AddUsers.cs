@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ChatApp_CMPG315
 {
@@ -47,6 +48,120 @@ namespace ChatApp_CMPG315
 
             return true;
         }
+
+        private void PopulateCheckboxList(List<User> users)
+        {
+            // iterates through each user in the list
+            foreach (User user in users)
+            {
+                // ensures that the user object is not null, if not, the checkbox lists are populated
+                if (!string.IsNullOrEmpty(user?.Email))
+                {
+                    clbxUsers.Items.Add(user.Email);
+                    clbxNewUsers.Items.Add(user.Email);
+                }
+            }
+        }
+
+        public async Task<List<string>> getGroupNames(FirestoreDb database)
+        {
+            List<string> names = new List<string>();
+            QuerySnapshot snapshot = await database.Collection("groups").GetSnapshotAsync();
+
+            foreach (DocumentSnapshot document in snapshot.Documents)
+            {
+                if (document.ContainsField("title"))
+                {
+                    string title = document.GetValue<string>("title");
+                    if (!string.IsNullOrEmpty(title))
+                    {
+                        names.Add(title);
+                    }
+                }
+            }
+
+            return names;
+        }
+
+        public async void populateCombobox()
+        {
+            FirestoreDb database = FirestoreHelper.Database;
+
+            cbxGroups.Items.Clear();
+            List<string> names = await getGroupNames(database);
+
+            cbxGroups.Items.AddRange(names.ToArray());
+
+            if (cbxGroups.Items.Count > 0)
+            {
+                cbxGroups.SelectedIndex = 0;
+               
+            }
+        }
+
+        public List<string> GetGroupMembers(CheckedListBox checkedListBox)
+        {
+            List<string> members = new List<string>();
+            foreach (var item in checkedListBox.CheckedItems)
+            {
+                members.Add(item.ToString());
+            }
+            return members;
+        }
+        public CheckedListBox getSelectedChecklistBox(CheckedListBox checkedListBox)
+        {
+            return checkedListBox;
+        }
+
+        public bool ifGroupExist(string title)
+        {
+            var database = FirestoreHelper.Database;
+
+            DocumentReference documentReference = database.Collection("groups").Document(title);
+            Groups name = documentReference.GetSnapshotAsync().Result.ConvertTo<Groups>();
+
+            if (name != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public async Task CreateGroup(CheckedListBox checkedListBox, string created_by, string groupDescription, DateTime created_at, string title)
+        {
+            var database = FirestoreHelper.Database;
+            CollectionReference groupsCollection = database.Collection("groups");
+            DocumentReference newGroupRef = groupsCollection.Document();
+
+            if (ifGroupExist(title))
+            {
+                MessageBox.Show("This group already exists!!");
+            }
+
+            // the list contains all of the members selected from the checkedlistbox
+            List<string> groupMembers = GetGroupMembers(checkedListBox);
+
+            groupMembers.Add(created_by);
+
+            Dictionary<string, object> groupData = new Dictionary<string, object>
+            {
+                { "participants", groupMembers},
+                { "Created_by", created_by},
+                { "description", groupDescription },
+                { "created_at", created_at },
+                { "title", title }
+            };
+
+            await newGroupRef.SetAsync(groupData);
+
+            MessageBox.Show("Added!");
+            // clears the list for future use
+            groupMembers.Clear();
+        }
+
 
         public void displayWarning(string message)
         {
@@ -137,10 +252,9 @@ namespace ChatApp_CMPG315
 
         private void cButton1_Click(object sender, EventArgs e)
         {
-            Close();
-
-            ChatForm chatForm = new ChatForm(user);
-            chatForm.Show();
+            ChatForm chat = new ChatForm(userEmail);
+            this.Hide();
+            chat.Show();
         }
     }
 }
