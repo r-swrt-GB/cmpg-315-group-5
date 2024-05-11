@@ -129,10 +129,10 @@ namespace ChatApp_CMPG315
             this.cTxtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cTxtPassword.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.cTxtPassword.Location = new System.Drawing.Point(168, 373);
-            this.cTxtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cTxtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.cTxtPassword.Multiline = false;
             this.cTxtPassword.Name = "cTxtPassword";
-            this.cTxtPassword.Padding = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.cTxtPassword.Padding = new System.Windows.Forms.Padding(7);
             this.cTxtPassword.PasswordChar = true;
             this.cTxtPassword.Size = new System.Drawing.Size(240, 31);
             this.cTxtPassword.TabIndex = 8;
@@ -148,10 +148,10 @@ namespace ChatApp_CMPG315
             this.cTxtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cTxtUserName.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.cTxtUserName.Location = new System.Drawing.Point(168, 299);
-            this.cTxtUserName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cTxtUserName.Margin = new System.Windows.Forms.Padding(4);
             this.cTxtUserName.Multiline = false;
             this.cTxtUserName.Name = "cTxtUserName";
-            this.cTxtUserName.Padding = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.cTxtUserName.Padding = new System.Windows.Forms.Padding(7);
             this.cTxtUserName.PasswordChar = false;
             this.cTxtUserName.Size = new System.Drawing.Size(240, 31);
             this.cTxtUserName.TabIndex = 7;
@@ -231,6 +231,7 @@ namespace ChatApp_CMPG315
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

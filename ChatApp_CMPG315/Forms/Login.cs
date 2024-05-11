@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,12 @@ namespace ChatApp_CMPG315
 {
     public partial class Login : Form
     {
+        public string userEmail
+        {
+            get { return cTxtUserName.Text; }
+            set { cTxtUserName.Texts = value; }
+        }
+
         public async Task<User> GetUserByEmail(FirestoreDb database, string email)
         {
             DocumentReference docRef = database.Collection("users").Document(email);
@@ -96,6 +103,9 @@ namespace ChatApp_CMPG315
             string email = cTxtUserName.Texts; 
             string password = cTxtPassword.Texts;
 
+           userEmail = email;
+            
+
             FirestoreDb database = FirestoreHelper.Database;
 
             User user = await GetUserByEmail(database, email);
@@ -109,6 +119,11 @@ namespace ChatApp_CMPG315
             {
                 MessageBox.Show("Invalid email or password");
             }
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
