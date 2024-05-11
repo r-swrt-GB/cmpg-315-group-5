@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 
 namespace ChatApp_CMPG315
@@ -16,6 +17,63 @@ namespace ChatApp_CMPG315
     {
         public string userEmail;
         public string receiver;
+        public FirestoreDb database = FirestoreHelper.Database;
+        private System.Timers.Timer timer;
+
+        private void SetupTimer()
+        {
+            timer = new System.Timers.Timer(1000);
+            timer.Elapsed += OnTimedEvent; 
+            timer.Enabled = true; 
+        }
+
+        private void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            this.BeginInvoke((MethodInvoker)async delegate {
+                List<Messages> newMessages = await GetMessagesBetweenUsers(database, userEmail, receiver);
+                List<string> formattedMessages = newMessages.Select(m => FormatMessage(m, userEmail)).ToList();
+
+                if (!IsListBoxContentSame(lstMessages, formattedMessages))
+                {
+                    lstMessages.Items.Clear();
+                    foreach (var message in formattedMessages)
+                    {
+                        lstMessages.Items.Add(message);
+                    }
+
+                    // Scroll to the bottom of the ListBox
+                    if (lstMessages.Items.Count > 0)
+                        lstMessages.SelectedIndex = lstMessages.Items.Count - 1;
+                }
+            });
+        }
+
+
+        private string FormatMessage(Messages message, string senderEmail)
+        {
+            string prefix = message.sender_id == senderEmail ? "You: " : "Them: ";
+            string formattedDate = message.created_at.ToString("MMM dd, yyyy HH:mm");
+            return $"{prefix} {formattedDate}: {message.body}";
+        }
+
+        private bool IsListBoxContentSame(ListBox listBox, List<string> newMessages)
+        {
+            if (listBox.Items.Count != newMessages.Count)
+            {
+                return false; 
+            }
+
+            for (int i = 0; i < newMessages.Count; i++)
+            {
+                if (listBox.Items[i].ToString() != newMessages[i])
+                {
+                    return false; 
+                }
+            }
+
+            return true;
+        }
+
         public async Task<string> FindGroupIdByTitle(FirestoreDb database, string title)
         {
             CollectionReference groupsCollection = database.Collection("groups");
@@ -134,24 +192,51 @@ namespace ChatApp_CMPG315
                     lstMessages.Items.Add(displayText);
                     lstMessages.SelectedIndex = lstMessages.Items.Count - 1; // Scroll to the latest message
                 }*/
-
-        public void SetupRealTimeMessageListener(FirestoreDb database, string senderEmail, string receiverEmail, ListBox messageDisplayBox)
+        public async Task<string> FindUserIdByEmail(FirestoreDb database, string email)
         {
-            CollectionReference messagesCollection = database.Collection("messages");
+            //Soek deur die collections vir die email wie die message moet kry
+            CollectionReference usersCollection = database.Collection("users");
+            Query query = usersCollection.WhereEqualTo("Email", email);
+            //Return al die collections wat == aan die email
+            QuerySnapshot snapshot = await query.GetSnapshotAsync();
 
-            // Setup listener for messages where senderEmail is the sender and receiverEmail is the recipient
-            Query queryOne = messagesCollection
-                .WhereEqualTo("sender_id", senderEmail)
-                .WhereEqualTo("recipient_id", receiverEmail);
+            //Ensure only one email
+            if (snapshot.Count == 1)
+            {
+                DocumentSnapshot userDocument = snapshot.Documents[0];
+                return userDocument.Id;
+            }
+            return null;
+        }
 
-            // Setup listener for messages where receiverEmail is the sender and senderEmail is the recipient
-            Query queryTwo = messagesCollection
-                .WhereEqualTo("sender_id", receiverEmail)
-                .WhereEqualTo("recipient_id", senderEmail);
+        /*public void SetupRealTimeMessageListener(FirestoreDb database, string userOneEmail, string userTwoEmail, ListBox messageDisplayBox)
+        {
+            Task.Run(async () =>
+            {
+                string userOneId = await FindUserIdByEmail(database, userOneEmail);
+                string userTwoId = await FindUserIdByEmail(database, userTwoEmail);
+                if (userOneId == null || userTwoId == null)
+                {
+                    MessageBox.Show("One or both users not found.");
+                    return;
+                }
 
-            // Listen for real-time updates from both queries
-            queryOne.Listen(snapshot => HandleDocumentChanges(snapshot, "You sent: ", messageDisplayBox));
-            queryTwo.Listen(snapshot => HandleDocumentChanges(snapshot, "They sent: ", messageDisplayBox));
+                CollectionReference messagesCollection = database.Collection("messages");
+
+                // Setup listener for messages where userOne is the sender and userTwo is the recipient
+                Query queryOne = messagesCollection
+                    .WhereEqualTo("sender_id", userOneId)
+                    .WhereEqualTo("recipient_id", userTwoId);
+
+                // Setup listener for messages where userOne is the recipient and userTwo is the sender
+                Query queryTwo = messagesCollection
+                    .WhereEqualTo("sender_id", userTwoId)
+                    .WhereEqualTo("recipient_id", userOneId);
+
+                // Listen for real-time updates from both queries
+                queryOne.Listen(snapshot => HandleDocumentChanges(snapshot, "You: ", messageDisplayBox));
+                queryTwo.Listen(snapshot => HandleDocumentChanges(snapshot, "Them: ", messageDisplayBox));
+            });
         }
 
         private void HandleDocumentChanges(QuerySnapshot snapshot, string messagePrefix, ListBox messageDisplayBox)
@@ -167,7 +252,7 @@ namespace ChatApp_CMPG315
                     }));
                 }
             }
-        }
+        }*/
 
 
         public async Task<List<string>> GetAllUserEmails(FirestoreDb database)
@@ -206,7 +291,8 @@ namespace ChatApp_CMPG315
             FirestoreDb database = FirestoreHelper.Database;
             string recipientEmail = receiver;
             string groupTitle = "Group_Example_1";
-            SetupRealTimeMessageListener(database, userEmail, recipientEmail,lstMessages);
+            //SetupRealTimeMessageListener(database, userEmail, recipientEmail,lstMessages);
+            SetupTimer();
         }
 
         private void Main_Load(object sender, EventArgs e)
