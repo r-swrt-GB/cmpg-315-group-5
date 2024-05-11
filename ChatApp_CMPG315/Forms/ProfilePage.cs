@@ -12,10 +12,10 @@ namespace ChatApp_CMPG315
         private string name;
         private string surname;
         private string email;
-
+        private List<Groups> groups;
         private User user;
 
-        public ProfilePage(User user)
+        public ProfilePage(User user, List<Groups> groups)
         {
             InitializeComponent();
 
@@ -27,12 +27,12 @@ namespace ChatApp_CMPG315
 
             cTxtName.Texts = name;
             cTxtSurname.Texts = surname;
-
+            this.groups = groups;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            ChatForm chat = new ChatForm(user);
+            ChatForm chat = new ChatForm(user, groups);
             this.Close();
             chat.Show();
         }
@@ -148,7 +148,7 @@ namespace ChatApp_CMPG315
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            ChatForm mainForm = new ChatForm(user);
+            ChatForm mainForm = new ChatForm(user, groups);
             this.Close();
             mainForm.Show();
         }

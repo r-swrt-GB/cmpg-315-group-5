@@ -63,6 +63,16 @@ namespace ChatApp_CMPG315.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _default {
+            get {
+                object obj = ResourceManager.GetObject("default", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AddUser {
             get {
                 object obj = ResourceManager.GetObject("AddUser", resourceCulture);
@@ -116,6 +126,16 @@ namespace ChatApp_CMPG315.Properties {
         internal static System.Drawing.Bitmap Chats {
             get {
                 object obj = ResourceManager.GetObject("Chats", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap def_copy_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("def_copy-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ChatApp_CMPG315.Classes
 {
     [FirestoreData]
-    internal class Groups
+    public class Groups
     {
         [FirestoreProperty]
         public DateTime created_at { get; set; }
@@ -20,7 +20,7 @@ namespace ChatApp_CMPG315.Classes
         public string description { get; set; }
 
         [FirestoreProperty]
-        public string participants { get; set; }
+        public List<string> participants { get; set; }
 
         [FirestoreProperty]
         public string title { get; set; }

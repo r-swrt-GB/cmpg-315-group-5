@@ -161,7 +161,9 @@ namespace ChatApp_CMPG315
 
                 if (user != null)
                 {
-                    ChatForm chat = new ChatForm(user);
+                    List<Groups> groups = new List<Groups> { };
+
+                    ChatForm chat = new ChatForm(user, groups);
                     this.Hide();
                     chat.Show();
                 }

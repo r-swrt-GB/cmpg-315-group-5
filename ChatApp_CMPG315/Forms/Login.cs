@@ -2,7 +2,7 @@
 using Google.Cloud.Firestore;
 using System;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -48,6 +48,36 @@ namespace ChatApp_CMPG315
             }
 
             return null;
+        }
+
+        public async Task<List<Groups>> GetGroupsForUser(FirestoreDb database, string userEmail)
+        {
+            List<Groups> userGroups = new List<Groups>();
+
+            QuerySnapshot querySnapshot = await database.Collection("groups")
+                .WhereEqualTo("created_by", userEmail)
+                .GetSnapshotAsync();
+
+            foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
+            {
+                Groups group = documentSnapshot.ConvertTo<Groups>();
+                userGroups.Add(group);
+            }
+
+            querySnapshot = await database.Collection("groups")
+                .WhereArrayContains("participants", userEmail)
+                .GetSnapshotAsync();
+
+            foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
+            {
+                Groups group = documentSnapshot.ConvertTo<Groups>();
+                if (!userGroups.Any(g => g.title == group.title))
+                {
+                    userGroups.Add(group);
+                }
+            }
+
+            return userGroups;
         }
 
 
@@ -157,16 +187,18 @@ namespace ChatApp_CMPG315
             {
                 FirestoreDb database = FirestoreHelper.Database;
 
-            User user = await GetUserByEmail(database, email);
-            if (user != null && verifyPassword(password, user.Password))
-            {
-                ChatForm chat = new ChatForm(email);
-                this.Hide();
-                chat.Show();
-            }
-            else
-            {
-                MessageBox.Show("Invalid email or password");
+                User user = await GetUserByEmail(database, email);
+                List<Groups> groups = await GetGroupsForUser(database, email);
+                if (user != null && verifyPassword(password, user.Password))
+                {
+                    ChatForm chat = new ChatForm(user, groups);
+                    this.Hide();
+                    chat.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid email or password");
+                }
             }
         }
 
@@ -180,5 +212,4 @@ namespace ChatApp_CMPG315
             TogglePassword();
         }
     }
-}
 }

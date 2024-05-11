@@ -114,11 +114,10 @@ namespace ChatApp_CMPG315
             this.cTxtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cTxtPassword.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.cTxtPassword.Location = new System.Drawing.Point(170, 388);
-            this.cTxtPassword.Margin = new System.Windows.Forms.Padding(4);
+            this.cTxtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cTxtPassword.Multiline = false;
             this.cTxtPassword.Name = "cTxtPassword";
-            this.cTxtPassword.Padding = new System.Windows.Forms.Padding(7);
-            this.cTxtPassword.Padding = new System.Windows.Forms.Padding(7);
+            this.cTxtPassword.Padding = new System.Windows.Forms.Padding(7, 7, 7, 7);
             this.cTxtPassword.PasswordChar = true;
             this.cTxtPassword.Size = new System.Drawing.Size(240, 31);
             this.cTxtPassword.TabIndex = 8;
@@ -134,12 +133,10 @@ namespace ChatApp_CMPG315
             this.cTxtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cTxtUserName.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.cTxtUserName.Location = new System.Drawing.Point(168, 299);
-            this.cTxtUserName.Margin = new System.Windows.Forms.Padding(4);
-            this.cTxtUserName.Margin = new System.Windows.Forms.Padding(4);
+            this.cTxtUserName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cTxtUserName.Multiline = false;
             this.cTxtUserName.Name = "cTxtUserName";
-            this.cTxtUserName.Padding = new System.Windows.Forms.Padding(7);
-            this.cTxtUserName.Padding = new System.Windows.Forms.Padding(7);
+            this.cTxtUserName.Padding = new System.Windows.Forms.Padding(7, 7, 7, 7);
             this.cTxtUserName.PasswordChar = false;
             this.cTxtUserName.Size = new System.Drawing.Size(240, 31);
             this.cTxtUserName.TabIndex = 7;
@@ -194,7 +191,7 @@ namespace ChatApp_CMPG315
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Image = global::ChatApp_CMPG315.Properties.Resources.icons8_close_window_48;
-            this.pictureBox1.Location = new System.Drawing.Point(582, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(586, 8);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(16, 16);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -269,7 +266,6 @@ namespace ChatApp_CMPG315
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            this.Load += new System.EventHandler(this.Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

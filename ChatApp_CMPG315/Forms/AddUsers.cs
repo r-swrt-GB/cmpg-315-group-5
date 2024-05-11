@@ -12,13 +12,15 @@ namespace ChatApp_CMPG315
 {
     public partial class AddUsers : Form
     {
-        private User user;
+        private User user; 
+        private List<Groups> groups;
 
-        public AddUsers(User user)
+        public AddUsers(User user, List<Groups> groups)
         {
             InitializeComponent();
 
             this.user = user;
+            this.groups = groups;
         }
 
         public static bool IsValidEmail(string email)
@@ -51,7 +53,7 @@ namespace ChatApp_CMPG315
 
         private void PopulateCheckboxList(List<User> users)
         {
-            // iterates through each user in the list
+           /* // iterates through each user in the list
             foreach (User user in users)
             {
                 // ensures that the user object is not null, if not, the checkbox lists are populated
@@ -60,7 +62,7 @@ namespace ChatApp_CMPG315
                     clbxUsers.Items.Add(user.Email);
                     clbxNewUsers.Items.Add(user.Email);
                 }
-            }
+            } */
         }
 
         public async Task<List<string>> getGroupNames(FirestoreDb database)
@@ -85,7 +87,7 @@ namespace ChatApp_CMPG315
 
         public async void populateCombobox()
         {
-            FirestoreDb database = FirestoreHelper.Database;
+           /* FirestoreDb database = FirestoreHelper.Database;
 
             cbxGroups.Items.Clear();
             List<string> names = await getGroupNames(database);
@@ -96,7 +98,7 @@ namespace ChatApp_CMPG315
             {
                 cbxGroups.SelectedIndex = 0;
                
-            }
+            } */
         }
 
         public List<string> GetGroupMembers(CheckedListBox checkedListBox)
@@ -210,8 +212,8 @@ namespace ChatApp_CMPG315
             if (!contacts.Contains(contact.Email))
             {
                 contacts.Add(contact.Email);
-                user.ContactEmails.Append(contact.Email);
-                user.ContactUsers.Append(contact);
+                user.ContactEmails.Add(contact.Email);
+                user.ContactUsers.Add(contact);
 
                 await userRef.UpdateAsync("ContactEmails", contacts);
 
@@ -223,7 +225,7 @@ namespace ChatApp_CMPG315
                 return;
             }
 
-            ChatForm chat = new ChatForm(user);
+            ChatForm chat = new ChatForm(user, groups);
             Close();
             chat.Show();
         }
@@ -252,9 +254,14 @@ namespace ChatApp_CMPG315
 
         private void cButton1_Click(object sender, EventArgs e)
         {
-            ChatForm chat = new ChatForm(userEmail);
+            ChatForm chat = new ChatForm(user, groups);
             this.Hide();
             chat.Show();
+        }
+
+        private void cbxGroups_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
