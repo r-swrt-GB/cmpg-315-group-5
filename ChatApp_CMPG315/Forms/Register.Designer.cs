@@ -63,7 +63,7 @@ namespace ChatApp_CMPG315
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Trebuchet MS", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(204, 151);
+            this.label1.Location = new System.Drawing.Point(219, 189);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(174, 43);
             this.label1.TabIndex = 2;
@@ -74,7 +74,7 @@ namespace ChatApp_CMPG315
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(110, 241);
+            this.label2.Location = new System.Drawing.Point(125, 279);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 18);
             this.label2.TabIndex = 3;
@@ -87,11 +87,12 @@ namespace ChatApp_CMPG315
             this.cRegAcc.BorderColor = System.Drawing.Color.PaleTurquoise;
             this.cRegAcc.BorderRadius = 30;
             this.cRegAcc.BorderSize = 0;
+            this.cRegAcc.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cRegAcc.FlatAppearance.BorderSize = 0;
             this.cRegAcc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cRegAcc.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cRegAcc.ForeColor = System.Drawing.Color.White;
-            this.cRegAcc.Location = new System.Drawing.Point(201, 525);
+            this.cRegAcc.Location = new System.Drawing.Point(216, 563);
             this.cRegAcc.Name = "cRegAcc";
             this.cRegAcc.Size = new System.Drawing.Size(191, 40);
             this.cRegAcc.TabIndex = 8;
@@ -105,7 +106,7 @@ namespace ChatApp_CMPG315
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(110, 293);
+            this.label3.Location = new System.Drawing.Point(125, 331);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 18);
             this.label3.TabIndex = 9;
@@ -116,7 +117,7 @@ namespace ChatApp_CMPG315
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(110, 354);
+            this.label4.Location = new System.Drawing.Point(125, 392);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 18);
             this.label4.TabIndex = 10;
@@ -127,7 +128,7 @@ namespace ChatApp_CMPG315
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label5.Location = new System.Drawing.Point(106, 417);
+            this.label5.Location = new System.Drawing.Point(121, 455);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(79, 18);
             this.label5.TabIndex = 11;
@@ -141,7 +142,7 @@ namespace ChatApp_CMPG315
             this.cTxtName.BorderSize = 3;
             this.cTxtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cTxtName.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.cTxtName.Location = new System.Drawing.Point(194, 233);
+            this.cTxtName.Location = new System.Drawing.Point(209, 271);
             this.cTxtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cTxtName.Multiline = false;
             this.cTxtName.Name = "cTxtName";
@@ -160,7 +161,7 @@ namespace ChatApp_CMPG315
             this.cTxtSName.BorderSize = 3;
             this.cTxtSName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cTxtSName.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.cTxtSName.Location = new System.Drawing.Point(194, 286);
+            this.cTxtSName.Location = new System.Drawing.Point(209, 324);
             this.cTxtSName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cTxtSName.Multiline = false;
             this.cTxtSName.Name = "cTxtSName";
@@ -179,7 +180,7 @@ namespace ChatApp_CMPG315
             this.cTxtEmail.BorderSize = 3;
             this.cTxtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cTxtEmail.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.cTxtEmail.Location = new System.Drawing.Point(194, 348);
+            this.cTxtEmail.Location = new System.Drawing.Point(209, 386);
             this.cTxtEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cTxtEmail.Multiline = false;
             this.cTxtEmail.Name = "cTxtEmail";
@@ -198,7 +199,7 @@ namespace ChatApp_CMPG315
             this.cTxtPassword.BorderSize = 3;
             this.cTxtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cTxtPassword.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.cTxtPassword.Location = new System.Drawing.Point(194, 408);
+            this.cTxtPassword.Location = new System.Drawing.Point(209, 446);
             this.cTxtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cTxtPassword.Multiline = false;
             this.cTxtPassword.Name = "cTxtPassword";
@@ -213,7 +214,7 @@ namespace ChatApp_CMPG315
             // 
             this.pictureBox3.BackgroundImage = global::ChatApp_CMPG315.Properties.Resources.icons8_eye_60;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(407, 417);
+            this.pictureBox3.Location = new System.Drawing.Point(422, 455);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(22, 22);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -226,7 +227,7 @@ namespace ChatApp_CMPG315
             // 
             this.pictureBox2.BackgroundImage = global::ChatApp_CMPG315.Properties.Resources.Speech;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(207, -9);
+            this.pictureBox2.Location = new System.Drawing.Point(222, 29);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(172, 133);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -237,6 +238,7 @@ namespace ChatApp_CMPG315
             // 
             this.pictureBox1.BackgroundImage = global::ChatApp_CMPG315.Properties.Resources.icons8_close_window_48;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Location = new System.Drawing.Point(586, 8);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(16, 15);
@@ -249,7 +251,7 @@ namespace ChatApp_CMPG315
             // 
             this.pictureBox4.BackgroundImage = global::ChatApp_CMPG315.Properties.Resources.icons8_eye_60;
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Location = new System.Drawing.Point(407, 473);
+            this.pictureBox4.Location = new System.Drawing.Point(422, 511);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(22, 22);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -266,7 +268,7 @@ namespace ChatApp_CMPG315
             this.cTbxConfirmPassword.BorderSize = 3;
             this.cTbxConfirmPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cTbxConfirmPassword.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.cTbxConfirmPassword.Location = new System.Drawing.Point(194, 464);
+            this.cTbxConfirmPassword.Location = new System.Drawing.Point(209, 502);
             this.cTbxConfirmPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cTbxConfirmPassword.Multiline = false;
             this.cTbxConfirmPassword.Name = "cTbxConfirmPassword";
@@ -282,7 +284,7 @@ namespace ChatApp_CMPG315
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label6.Location = new System.Drawing.Point(110, 460);
+            this.label6.Location = new System.Drawing.Point(125, 498);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(64, 18);
             this.label6.TabIndex = 18;
@@ -292,7 +294,7 @@ namespace ChatApp_CMPG315
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(115, 270);
+            this.panel1.Location = new System.Drawing.Point(130, 308);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(286, 6);
             this.panel1.TabIndex = 4;
@@ -302,7 +304,7 @@ namespace ChatApp_CMPG315
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label7.Location = new System.Drawing.Point(110, 477);
+            this.label7.Location = new System.Drawing.Point(125, 515);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(79, 18);
             this.label7.TabIndex = 21;
@@ -312,7 +314,7 @@ namespace ChatApp_CMPG315
             // 
             this.panel3.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Location = new System.Drawing.Point(115, 445);
+            this.panel3.Location = new System.Drawing.Point(130, 483);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(286, 6);
             this.panel3.TabIndex = 5;
@@ -321,7 +323,7 @@ namespace ChatApp_CMPG315
             // 
             this.panel4.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Location = new System.Drawing.Point(115, 391);
+            this.panel4.Location = new System.Drawing.Point(130, 429);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(286, 6);
             this.panel4.TabIndex = 5;
@@ -330,7 +332,7 @@ namespace ChatApp_CMPG315
             // 
             this.panel5.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Location = new System.Drawing.Point(115, 329);
+            this.panel5.Location = new System.Drawing.Point(130, 367);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(286, 6);
             this.panel5.TabIndex = 5;
@@ -338,9 +340,10 @@ namespace ChatApp_CMPG315
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label8.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label8.Location = new System.Drawing.Point(274, 614);
+            this.label8.Location = new System.Drawing.Point(285, 649);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(52, 20);
             this.label8.TabIndex = 23;
@@ -352,7 +355,7 @@ namespace ChatApp_CMPG315
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label9.Location = new System.Drawing.Point(289, 585);
+            this.label9.Location = new System.Drawing.Point(299, 620);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(25, 18);
             this.label9.TabIndex = 22;
@@ -389,7 +392,7 @@ namespace ChatApp_CMPG315
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximumSize = new System.Drawing.Size(610, 695);
-            this.MinimumSize = new System.Drawing.Size(610, 695);
+            this.MinimumSize = new System.Drawing.Size(610, 442);
             this.Name = "Register";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Register";

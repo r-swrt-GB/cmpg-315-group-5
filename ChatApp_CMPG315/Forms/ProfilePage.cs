@@ -146,16 +146,12 @@ namespace ChatApp_CMPG315
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            ChatForm mainForm = new ChatForm(user, groups);
-            this.Close();
-            mainForm.Show();
-        }
-
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            ChatForm mainForm = new ChatForm(user, groups);
+
+            Close();
+            mainForm.Show();
         }
 
         private void TogglePassword()
@@ -200,6 +196,24 @@ namespace ChatApp_CMPG315
         private void pictureBox5_MouseLeave(object sender, EventArgs e)
         {
             ToggleConfirmPassword();
+        }
+
+        private void cButton2_Click(object sender, EventArgs e)
+        {
+
+            DialogResult result = MessageBox.Show("Are you sure you want to logout of your profile?", "Confirmation", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                ChatForm chatForm = new ChatForm(user, groups);
+                chatForm.Close();
+
+                Login login = new Login();
+                login.Show();
+
+                Close();
+            }
+
         }
     }
 }

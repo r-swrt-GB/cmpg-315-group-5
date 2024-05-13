@@ -32,9 +32,6 @@ namespace ChatApp_CMPG315
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.cButton1 = new ChatApp_CMPG315.CButton();
-            this.cTxtPassword = new ChatApp_CMPG315.CTextBox();
-            this.cTxtUserName = new ChatApp_CMPG315.CTextBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -44,6 +41,9 @@ namespace ChatApp_CMPG315
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.cButton1 = new ChatApp_CMPG315.CButton();
+            this.cTxtPassword = new ChatApp_CMPG315.CTextBox();
+            this.cTxtUserName = new ChatApp_CMPG315.CTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -56,7 +56,7 @@ namespace ChatApp_CMPG315
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Trebuchet MS", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(196, 183);
+            this.label1.Location = new System.Drawing.Point(197, 216);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(181, 43);
             this.label1.TabIndex = 2;
@@ -67,7 +67,7 @@ namespace ChatApp_CMPG315
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(275, 526);
+            this.label2.Location = new System.Drawing.Point(276, 567);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(25, 18);
             this.label2.TabIndex = 10;
@@ -76,14 +76,112 @@ namespace ChatApp_CMPG315
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label3.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(216, 565);
+            this.label3.Location = new System.Drawing.Point(217, 598);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(148, 20);
             this.label3.TabIndex = 11;
             this.label3.Text = "REGISTER ACCOUNT";
             this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox5.Image = global::ChatApp_CMPG315.Properties.Resources.icons8_eye_60;
+            this.pictureBox5.Location = new System.Drawing.Point(419, 425);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(22, 25);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 12;
+            this.pictureBox5.TabStop = false;
+            this.pictureBox5.MouseEnter += new System.EventHandler(this.pictureBox5_MouseEnter);
+            this.pictureBox5.MouseLeave += new System.EventHandler(this.pictureBox5_MouseLeave);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox4.Image = global::ChatApp_CMPG315.Properties.Resources.icons8_lock_502;
+            this.pictureBox4.Location = new System.Drawing.Point(139, 421);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 4;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::ChatApp_CMPG315.Properties.Resources.icons8_person_48;
+            this.pictureBox3.Location = new System.Drawing.Point(137, 332);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 3;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::ChatApp_CMPG315.Properties.Resources.Speech;
+            this.pictureBox2.Location = new System.Drawing.Point(204, 45);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(172, 133);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Image = global::ChatApp_CMPG315.Properties.Resources.icons8_close_window_48;
+            this.pictureBox1.Location = new System.Drawing.Point(586, 8);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Location = new System.Drawing.Point(137, 376);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(269, 6);
+            this.panel3.TabIndex = 13;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(143, 463);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(269, 6);
+            this.panel1.TabIndex = 14;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label4.Location = new System.Drawing.Point(168, 303);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(119, 20);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "EMAIL ADDRESS";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label5.Location = new System.Drawing.Point(168, 393);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(86, 20);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "PASSWORD";
             // 
             // cButton1
             // 
@@ -92,11 +190,12 @@ namespace ChatApp_CMPG315
             this.cButton1.BorderColor = System.Drawing.Color.PaleTurquoise;
             this.cButton1.BorderRadius = 30;
             this.cButton1.BorderSize = 0;
+            this.cButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cButton1.FlatAppearance.BorderSize = 0;
             this.cButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cButton1.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cButton1.ForeColor = System.Drawing.Color.White;
-            this.cButton1.Location = new System.Drawing.Point(182, 472);
+            this.cButton1.Location = new System.Drawing.Point(183, 505);
             this.cButton1.Name = "cButton1";
             this.cButton1.Size = new System.Drawing.Size(211, 40);
             this.cButton1.TabIndex = 9;
@@ -113,7 +212,7 @@ namespace ChatApp_CMPG315
             this.cTxtPassword.BorderSize = 3;
             this.cTxtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cTxtPassword.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.cTxtPassword.Location = new System.Drawing.Point(170, 388);
+            this.cTxtPassword.Location = new System.Drawing.Point(171, 421);
             this.cTxtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cTxtPassword.Multiline = false;
             this.cTxtPassword.Name = "cTxtPassword";
@@ -132,7 +231,7 @@ namespace ChatApp_CMPG315
             this.cTxtUserName.BorderSize = 3;
             this.cTxtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cTxtUserName.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.cTxtUserName.Location = new System.Drawing.Point(168, 299);
+            this.cTxtUserName.Location = new System.Drawing.Point(169, 332);
             this.cTxtUserName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cTxtUserName.Multiline = false;
             this.cTxtUserName.Name = "cTxtUserName";
@@ -142,102 +241,6 @@ namespace ChatApp_CMPG315
             this.cTxtUserName.TabIndex = 7;
             this.cTxtUserName.Texts = "";
             this.cTxtUserName.UnderlinedStyle = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox5.Image = global::ChatApp_CMPG315.Properties.Resources.icons8_eye_60;
-            this.pictureBox5.Location = new System.Drawing.Point(418, 392);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(22, 25);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 12;
-            this.pictureBox5.TabStop = false;
-            this.pictureBox5.MouseEnter += new System.EventHandler(this.pictureBox5_MouseEnter);
-            this.pictureBox5.MouseLeave += new System.EventHandler(this.pictureBox5_MouseLeave);
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Image = global::ChatApp_CMPG315.Properties.Resources.icons8_lock_502;
-            this.pictureBox4.Location = new System.Drawing.Point(138, 388);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(25, 25);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 4;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::ChatApp_CMPG315.Properties.Resources.icons8_person_48;
-            this.pictureBox3.Location = new System.Drawing.Point(136, 299);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(25, 25);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 3;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::ChatApp_CMPG315.Properties.Resources.Speech;
-            this.pictureBox2.Location = new System.Drawing.Point(203, 12);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(172, 133);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Image = global::ChatApp_CMPG315.Properties.Resources.icons8_close_window_48;
-            this.pictureBox1.Location = new System.Drawing.Point(586, 8);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Location = new System.Drawing.Point(136, 343);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(269, 6);
-            this.panel3.TabIndex = 13;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(142, 430);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(269, 6);
-            this.panel1.TabIndex = 14;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(167, 270);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(119, 20);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "EMAIL ADDRESS";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label5.Location = new System.Drawing.Point(167, 360);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(86, 20);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "PASSWORD";
             // 
             // Login
             // 
@@ -262,7 +265,7 @@ namespace ChatApp_CMPG315
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximumSize = new System.Drawing.Size(610, 695);
-            this.MinimumSize = new System.Drawing.Size(610, 695);
+            this.MinimumSize = new System.Drawing.Size(610, 442);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";

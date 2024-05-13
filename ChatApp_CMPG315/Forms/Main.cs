@@ -4,11 +4,11 @@ using Google.Cloud.Firestore;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ChatApp_CMPG315
 {
@@ -20,6 +20,8 @@ namespace ChatApp_CMPG315
         private User user;
         private List<Groups> groups;
         private FirestoreDb database = FirestoreHelper.Database;
+
+        private int lastSelectedIndex = -1;
 
         private System.Timers.Timer timer;
 
@@ -110,16 +112,13 @@ namespace ChatApp_CMPG315
             return null;
         }
 
-        public async Task SendMessageAsync(FirestoreDb database, string senderEmail, string recipientEmail, string messageBody)
+        public async Task SendMessageAsync(FirestoreDb database, string senderEmail, string recipientEmail, string messageBody, bool isGroup)
         {
-
-            //Create message
             Messages newMessage = new Messages()
             {
                 body = messageBody,
                 created_at = DateTime.UtcNow,//UtcNwo used for FireStore requirement
                 sender_id = senderEmail,
-                read_at = null,
                 recipient_id = recipientEmail
 
             };
@@ -132,9 +131,20 @@ namespace ChatApp_CMPG315
             string formattedMessage = newMessage.body;
             string messageDate = $"Message sent: {newMessage.created_at.ToString("yyyy-MM-dd HH:mm:ss")}"; // Add "Message sent: " before the time
 
-            lstMessages.Items.Add($"{messagePrefix}{formattedMessage}");
+            if (!isGroup)
+            {
+                await LoadInitialMessages(database, senderEmail, recipientEmail, lblChatterUsername.Text);
+            }
+            else
+            {
+                await LoadInitialGroupMessages(database, senderEmail, lblChatterUsername.Text);
+            }
+
+
+
+            /* lstMessages.Items.Add($"{messagePrefix}{formattedMessage}");
             lstMessages.Items.Add(messageDate);
-            lstMessages.Items.Add("");
+            lstMessages.Items.Add(""); */
         }
 
         public async Task<List<Messages>> GetMessagesBetweenUsers(FirestoreDb database, string senderEmail, string receiverEmail)
@@ -173,14 +183,15 @@ namespace ChatApp_CMPG315
             lstMessages.Items.Clear();
 
             List<Messages> messages = await GetMessagesBetweenUsers(database, senderEmail, recipientEmail);
+            List<Messages> sortedMessages = SortMessagesByDate(messages);
 
-            if (messages == null || messages.Count == 0)
+            if (sortedMessages == null || sortedMessages.Count == 0)
             {
                 lstMessages.Items.Add("No messages have been sent. Be the first to say hi!");
             }
             else
             {
-                foreach (var message in messages)
+                foreach (var message in sortedMessages)
                 {
                     string messagePrefix = message.sender_id == senderEmail ? $"{user.Name} {user.LastName}: " : $"{receiverName}: ";
                     string formattedMessage = message.body;
@@ -194,6 +205,12 @@ namespace ChatApp_CMPG315
             }
         }
 
+        public List<Messages> SortMessagesByDate(List<Messages> messages)
+        {
+            List<Messages> sortedMessages = messages.OrderBy(msg => msg.created_at).ToList();
+            return sortedMessages;
+        }
+
         private async Task LoadInitialGroupMessages(FirestoreDb database, string senderEmail, string groupTitle)
         {
             lstMessages.Items.Clear();
@@ -203,19 +220,23 @@ namespace ChatApp_CMPG315
                 .GetSnapshotAsync();
 
             List<Messages> messages = new List<Messages>();
+            
+
             foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
             {
                 Messages message = documentSnapshot.ConvertTo<Messages>();
                 messages.Add(message);
             }
 
-            if (messages == null || messages.Count == 0)
+            List<Messages> sortedMessages = SortMessagesByDate(messages);
+
+            if (sortedMessages == null || sortedMessages.Count == 0)
             {
                 lstMessages.Items.Add("No messages have been sent. Be the first to say hi!");
             }
             else
             {
-                foreach (var message in messages)
+                foreach (var message in sortedMessages)
                 {
                     string messagePrefix = message.sender_id == senderEmail ? "You: " : $"{message.sender_id}: ";
 
@@ -393,10 +414,14 @@ namespace ChatApp_CMPG315
             string senderEamil = userEmail;
             string messageBody = txtbxSendMessage.Texts;
 
-            txtbxSendMessage.Texts = null;
-            lstMessages.Items.Clear();
-            await SendMessageAsync(database, senderEamil, recipientEmail, messageBody);
-            // await LoadInitialMessages(database, userEmail, receiver);
+            if (ValidateMessageSend())
+            {
+                txtbxSendMessage.Texts = null;
+
+                lstMessages.Items.Clear();
+
+                await SendMessageAsync(database, senderEamil, recipientEmail, messageBody, false);
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -406,18 +431,17 @@ namespace ChatApp_CMPG315
 
         private void userProfile_Click(object sender, EventArgs e)
         {
-            //user profile on click
-
             ProfilePage prof = new ProfilePage(user, groups);
-            this.Hide();
+
+            Hide();
             prof.Show();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            //onclickbackbbton
             Login log = new Login();
-            this.Hide();
+
+            Hide();
             log.Show();
         }
 
@@ -489,44 +513,52 @@ namespace ChatApp_CMPG315
 
         private async void lstUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lstUsers.SelectedItem != null)
+            if (lstUsers.SelectedItem == null || lstUsers.SelectedIndex == -1 || lstUsers.SelectedIndex == lastSelectedIndex)
             {
-                txtbxSendMessage.Texts = "Type your message here...";
+                return;
+            }
 
-                if (IsContact(lstUsers.SelectedItem.ToString()))
+            lstMessages.Items.Clear();
+
+            lastSelectedIndex = lstUsers.SelectedIndex;
+
+            txtbxSendMessage.Texts = "Type your message here...";
+
+            if (IsContact(lstUsers.SelectedItem.ToString()))
+            {
+                btnSendPrivateMessage.Show();
+                btnSendGroupMessage.Hide();
+
+                string selectedEmail = ExtractTextBetweenBrackets(lstUsers.SelectedItem.ToString());
+                string selectedUser = ExtractTextBeforeBrackets(lstUsers.SelectedItem.ToString());
+
+                receiver = selectedEmail;
+
+                lblChatterUsername.Text = selectedUser;
+                lblEmail.Text = selectedEmail;
+
+                await LoadInitialMessages(database, user.Email, receiver, selectedUser);
+            }
+            else
+            {
+                btnSendPrivateMessage.Hide();
+                btnSendGroupMessage.Show();
+
+                Groups selectedGroup = GetGroupFromName(lstUsers.SelectedItem.ToString());
+
+                if (selectedGroup != null)
                 {
-                    btnSendPrivateMessage.Show();
-                    btnSendGroupMessage.Hide();
+                    lblChatterUsername.Text = selectedGroup.title;
 
-                    string selectedEmail = ExtractTextBetweenBrackets(lstUsers.SelectedItem.ToString());
-                    string selectedUser = ExtractTextBeforeBrackets(lstUsers.SelectedItem.ToString());
+                    lblEmail.Text = $"Created at: {selectedGroup.created_at}, Created by: {selectedGroup.created_by}";
 
-                    receiver = selectedEmail;
-
-                    lblChatterUsername.Text = selectedUser;
-                    lblEmail.Text = selectedEmail;
-
-                    await LoadInitialMessages(database, user.Email, receiver, selectedUser);
+                    await LoadInitialGroupMessages(database, user.Email, selectedGroup.title);
                 }
                 else
                 {
-                    btnSendPrivateMessage.Hide();
-                    btnSendGroupMessage.Show();
-
-                    Groups selectedGroup = GetGroupFromName(lstUsers.SelectedItem.ToString());
-
-                    if (selectedGroup != null)
-                    {
-                        lblChatterUsername.Text = selectedGroup.title;
-
-                        lblEmail.Text = $"Created at: {selectedGroup.created_at}, Created by: {selectedGroup.created_by}";
-
-                        await LoadInitialGroupMessages(database, user.Email, selectedGroup.title);
-                    } else
-                    {
-                        lstMessages.Items.Add("Could not load group messages. Please try again.");
-                    }
+                    lstMessages.Items.Add("Could not load group messages. Please try again.");
                 }
+
             }
         }
 
@@ -558,15 +590,48 @@ namespace ChatApp_CMPG315
             }
         }
 
+        public bool ValidateMessageSend()
+        {
+
+            if (string.IsNullOrEmpty(txtbxSendMessage.Texts) || txtbxSendMessage.Texts == "Type your message here...")
+            {
+                DisplayWarning("Please enter a message before sending");
+                txtbxSendMessage.Texts = "";
+                txtbxSendMessage.Focus();
+                return false;
+            }
+
+            if (lstUsers.SelectedIndex == -1)
+            {
+                DisplayWarning("Please selecte a contact before seding a message");
+                return false;
+            }
+
+            return true;
+        }
+
+        public void DisplayWarning(string message)
+        {
+            MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
         private async void btnSendGroupMessage_Click(object sender, EventArgs e)
         {
             string recipientEmail = lblChatterUsername.Text;
             string senderEamil = user.Email;
             string messageBody = txtbxSendMessage.Texts;
 
-            txtbxSendMessage.Texts = "Type your message here...";
+            if (ValidateMessageSend())
+            {
+                txtbxSendMessage.Texts = "Type your message here...";
 
-            await SendMessageAsync(database, senderEamil, recipientEmail, messageBody);
+                await SendMessageAsync(database, senderEamil, recipientEmail, messageBody, true);
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

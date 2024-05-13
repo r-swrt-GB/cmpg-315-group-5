@@ -68,7 +68,8 @@ namespace ChatApp_CMPG315
                 Password = password,
                 Name = name,
                 LastName = lastName,
-                ContactEmails = new List<string> { } 
+                ContactEmails = new List<string> { },
+                ContactUsers = new List<User> { }
             };
         }
 
@@ -80,7 +81,8 @@ namespace ChatApp_CMPG315
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Login log = new Login();
-            this.Hide();
+            
+            Hide();
             log.Show();
         }
 
@@ -150,7 +152,7 @@ namespace ChatApp_CMPG315
         {
             string password = cTxtPassword.Texts;
             string confirmPassword = cTbxConfirmPassword.Texts;
-            string email = cTxtEmail.Texts;
+            string email = cTxtEmail.Texts.ToLower();
             string name = cTxtName.Texts;
             string lastName = cTxtSName.Texts;
 

@@ -30,7 +30,7 @@ namespace ChatApp_CMPG315
         private void InitializeComponent()
         {
             this.pnlMessages = new System.Windows.Forms.Panel();
-            this.btnSendGroupMessage = new ChatApp_CMPG315.CButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.lblEmail = new System.Windows.Forms.Label();
@@ -38,6 +38,7 @@ namespace ChatApp_CMPG315
             this.lblChatterUsername = new System.Windows.Forms.Label();
             this.lstMessages = new System.Windows.Forms.ListBox();
             this.txtbxSendMessage = new ChatApp_CMPG315.CTextBox();
+            this.btnSendGroupMessage = new ChatApp_CMPG315.CButton();
             this.btnSendPrivateMessage = new ChatApp_CMPG315.CButton();
             this.pnlUsers = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -47,9 +48,12 @@ namespace ChatApp_CMPG315
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
             this.cButton1 = new ChatApp_CMPG315.CButton();
             this.btnCreateGroup = new ChatApp_CMPG315.CButton();
             this.pnlMessages.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userProfile)).BeginInit();
             this.SuspendLayout();
@@ -57,7 +61,7 @@ namespace ChatApp_CMPG315
             // pnlMessages
             // 
             this.pnlMessages.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlMessages.Controls.Add(this.btnSendGroupMessage);
+            this.pnlMessages.Controls.Add(this.pictureBox1);
             this.pnlMessages.Controls.Add(this.panel1);
             this.pnlMessages.Controls.Add(this.panel7);
             this.pnlMessages.Controls.Add(this.lblEmail);
@@ -65,33 +69,26 @@ namespace ChatApp_CMPG315
             this.pnlMessages.Controls.Add(this.lblChatterUsername);
             this.pnlMessages.Controls.Add(this.lstMessages);
             this.pnlMessages.Controls.Add(this.txtbxSendMessage);
+            this.pnlMessages.Controls.Add(this.btnSendGroupMessage);
             this.pnlMessages.Controls.Add(this.btnSendPrivateMessage);
-            this.pnlMessages.Location = new System.Drawing.Point(339, -5);
+            this.pnlMessages.Location = new System.Drawing.Point(334, 11);
             this.pnlMessages.Margin = new System.Windows.Forms.Padding(2);
             this.pnlMessages.Name = "pnlMessages";
             this.pnlMessages.Size = new System.Drawing.Size(500, 472);
             this.pnlMessages.TabIndex = 6;
             // 
-            // btnSendGroupMessage
+            // pictureBox1
             // 
-            this.btnSendGroupMessage.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.btnSendGroupMessage.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
-            this.btnSendGroupMessage.BorderColor = System.Drawing.Color.DarkSlateBlue;
-            this.btnSendGroupMessage.BorderRadius = 30;
-            this.btnSendGroupMessage.BorderSize = 2;
-            this.btnSendGroupMessage.FlatAppearance.BorderSize = 0;
-            this.btnSendGroupMessage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSendGroupMessage.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendGroupMessage.ForeColor = System.Drawing.Color.White;
-            this.btnSendGroupMessage.Location = new System.Drawing.Point(426, 412);
-            this.btnSendGroupMessage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.btnSendGroupMessage.Name = "btnSendGroupMessage";
-            this.btnSendGroupMessage.Size = new System.Drawing.Size(62, 32);
-            this.btnSendGroupMessage.TabIndex = 18;
-            this.btnSendGroupMessage.Text = "Slap 👏";
-            this.btnSendGroupMessage.TextColor = System.Drawing.Color.White;
-            this.btnSendGroupMessage.UseVisualStyleBackColor = false;
-            this.btnSendGroupMessage.Click += new System.EventHandler(this.btnSendGroupMessage_Click);
+            this.pictureBox1.BackgroundImage = global::ChatApp_CMPG315.Properties.Resources.icons8_close_window_48;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Location = new System.Drawing.Point(478, 6);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(16, 15);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 19;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // panel1
             // 
@@ -156,7 +153,7 @@ namespace ChatApp_CMPG315
             this.lstMessages.Location = new System.Drawing.Point(17, 80);
             this.lstMessages.Margin = new System.Windows.Forms.Padding(2);
             this.lstMessages.Name = "lstMessages";
-            this.lstMessages.Size = new System.Drawing.Size(467, 300);
+            this.lstMessages.Size = new System.Drawing.Size(467, 280);
             this.lstMessages.TabIndex = 6;
             // 
             // txtbxSendMessage
@@ -179,6 +176,28 @@ namespace ChatApp_CMPG315
             this.txtbxSendMessage.UnderlinedStyle = false;
             this.txtbxSendMessage.Click += new System.EventHandler(this.txtbxSendMessage_Click);
             // 
+            // btnSendGroupMessage
+            // 
+            this.btnSendGroupMessage.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnSendGroupMessage.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnSendGroupMessage.BorderColor = System.Drawing.Color.DarkSlateBlue;
+            this.btnSendGroupMessage.BorderRadius = 30;
+            this.btnSendGroupMessage.BorderSize = 2;
+            this.btnSendGroupMessage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSendGroupMessage.FlatAppearance.BorderSize = 0;
+            this.btnSendGroupMessage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSendGroupMessage.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSendGroupMessage.ForeColor = System.Drawing.Color.White;
+            this.btnSendGroupMessage.Location = new System.Drawing.Point(426, 412);
+            this.btnSendGroupMessage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnSendGroupMessage.Name = "btnSendGroupMessage";
+            this.btnSendGroupMessage.Size = new System.Drawing.Size(62, 32);
+            this.btnSendGroupMessage.TabIndex = 18;
+            this.btnSendGroupMessage.Text = "Slap 👏";
+            this.btnSendGroupMessage.TextColor = System.Drawing.Color.White;
+            this.btnSendGroupMessage.UseVisualStyleBackColor = false;
+            this.btnSendGroupMessage.Click += new System.EventHandler(this.btnSendGroupMessage_Click);
+            // 
             // btnSendPrivateMessage
             // 
             this.btnSendPrivateMessage.BackColor = System.Drawing.Color.MediumSlateBlue;
@@ -186,6 +205,7 @@ namespace ChatApp_CMPG315
             this.btnSendPrivateMessage.BorderColor = System.Drawing.Color.DarkSlateBlue;
             this.btnSendPrivateMessage.BorderRadius = 30;
             this.btnSendPrivateMessage.BorderSize = 2;
+            this.btnSendPrivateMessage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSendPrivateMessage.FlatAppearance.BorderSize = 0;
             this.btnSendPrivateMessage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSendPrivateMessage.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -207,7 +227,7 @@ namespace ChatApp_CMPG315
             this.pnlUsers.Controls.Add(this.lstUsers);
             this.pnlUsers.Controls.Add(this.label1);
             this.pnlUsers.Controls.Add(this.userProfile);
-            this.pnlUsers.Location = new System.Drawing.Point(15, 2);
+            this.pnlUsers.Location = new System.Drawing.Point(10, 18);
             this.pnlUsers.Margin = new System.Windows.Forms.Padding(2);
             this.pnlUsers.Name = "pnlUsers";
             this.pnlUsers.Size = new System.Drawing.Size(328, 381);
@@ -258,6 +278,7 @@ namespace ChatApp_CMPG315
             // 
             this.userProfile.BackgroundImage = global::ChatApp_CMPG315.Properties.Resources.def_copy_removebg_preview;
             this.userProfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.userProfile.Cursor = System.Windows.Forms.Cursors.Hand;
             this.userProfile.InitialImage = null;
             this.userProfile.Location = new System.Drawing.Point(251, -8);
             this.userProfile.Margin = new System.Windows.Forms.Padding(2);
@@ -271,7 +292,7 @@ namespace ChatApp_CMPG315
             // 
             this.panel3.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Location = new System.Drawing.Point(12, 379);
+            this.panel3.Location = new System.Drawing.Point(7, 395);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(328, 7);
             this.panel3.TabIndex = 14;
@@ -280,7 +301,7 @@ namespace ChatApp_CMPG315
             // 
             this.panel2.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Location = new System.Drawing.Point(337, -1);
+            this.panel2.Location = new System.Drawing.Point(332, 15);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(10, 453);
             this.panel2.TabIndex = 15;
@@ -289,10 +310,28 @@ namespace ChatApp_CMPG315
             // 
             this.panel4.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Location = new System.Drawing.Point(7, 0);
+            this.panel4.Location = new System.Drawing.Point(2, 16);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(10, 453);
             this.panel4.TabIndex = 16;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel8.Location = new System.Drawing.Point(2, 11);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(831, 10);
+            this.panel8.TabIndex = 18;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel9.Location = new System.Drawing.Point(3, 460);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(832, 10);
+            this.panel9.TabIndex = 19;
             // 
             // cButton1
             // 
@@ -301,11 +340,12 @@ namespace ChatApp_CMPG315
             this.cButton1.BorderColor = System.Drawing.Color.PaleTurquoise;
             this.cButton1.BorderRadius = 30;
             this.cButton1.BorderSize = 1;
+            this.cButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cButton1.FlatAppearance.BorderSize = 0;
             this.cButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cButton1.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cButton1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.cButton1.Location = new System.Drawing.Point(180, 405);
+            this.cButton1.Location = new System.Drawing.Point(175, 421);
             this.cButton1.Name = "cButton1";
             this.cButton1.Size = new System.Drawing.Size(151, 36);
             this.cButton1.TabIndex = 11;
@@ -321,11 +361,12 @@ namespace ChatApp_CMPG315
             this.btnCreateGroup.BorderColor = System.Drawing.Color.PaleTurquoise;
             this.btnCreateGroup.BorderRadius = 30;
             this.btnCreateGroup.BorderSize = 1;
+            this.btnCreateGroup.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCreateGroup.FlatAppearance.BorderSize = 0;
             this.btnCreateGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreateGroup.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateGroup.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCreateGroup.Location = new System.Drawing.Point(23, 405);
+            this.btnCreateGroup.Location = new System.Drawing.Point(18, 421);
             this.btnCreateGroup.Name = "btnCreateGroup";
             this.btnCreateGroup.Size = new System.Drawing.Size(150, 36);
             this.btnCreateGroup.TabIndex = 10;
@@ -339,7 +380,9 @@ namespace ChatApp_CMPG315
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(845, 453);
+            this.ClientSize = new System.Drawing.Size(842, 472);
+            this.Controls.Add(this.panel9);
+            this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
@@ -347,15 +390,17 @@ namespace ChatApp_CMPG315
             this.Controls.Add(this.pnlMessages);
             this.Controls.Add(this.btnCreateGroup);
             this.Controls.Add(this.pnlUsers);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.MaximizeBox = false;
             this.Name = "ChatForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TheSlap";
             this.Load += new System.EventHandler(this.Main_Load);
             this.Shown += new System.EventHandler(this.ChatForm_Shown);
             this.pnlMessages.ResumeLayout(false);
             this.pnlMessages.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlUsers.ResumeLayout(false);
             this.pnlUsers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userProfile)).EndInit();
@@ -384,6 +429,9 @@ namespace ChatApp_CMPG315
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel1;
         private CButton btnSendGroupMessage;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel9;
     }
 }
 

@@ -73,18 +73,21 @@ namespace ChatApp_CMPG315.Forms
 
             await database.Collection("groups").AddAsync(newGroup);
 
-            user.ContactEmails.Add(groupTitle);
+            //user.ContactEmails.Add(groupTitle);
 
-            User groupAsUser =  new User()
+            Groups group = new Groups()
             {
-                Email = "",
-                Password = "",
-                Name = groupTitle,
-                LastName = "",
-                ContactEmails = new List<string> { }
+
+                created_at = createdAt,
+                created_by = createdBy,
+                participants = participantEmails,
+                title = groupTitle
+            
             };
 
-            user.ContactUsers.Add(groupAsUser);
+            //user.ContactUsers.Add(groupAsUser);
+
+            groups.Add(group);
 
             MessageBox.Show("Group created successfully. Happy slapping!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             CloseCurrentForm();
@@ -139,8 +142,8 @@ namespace ChatApp_CMPG315.Forms
         {
             ChatForm chatForm = new ChatForm(user, groups);
 
-            Close();
             chatForm.Show();
+            Close();
         }
 
         public string ExtractTextBetweenBrackets(string input)

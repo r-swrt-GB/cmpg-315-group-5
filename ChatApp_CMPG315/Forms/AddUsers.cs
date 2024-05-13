@@ -232,7 +232,7 @@ namespace ChatApp_CMPG315
 
         private async void btnSlap_Click(object sender, EventArgs e)
         {
-            string contactEmail = cTxtUserName.Texts;
+            string contactEmail = cTxtUserName.Texts.ToLower();
 
             if (ValidateForm(contactEmail))
             {
@@ -254,9 +254,7 @@ namespace ChatApp_CMPG315
 
         private void cButton1_Click(object sender, EventArgs e)
         {
-            ChatForm chat = new ChatForm(user, groups);
-            this.Hide();
-            chat.Show();
+            Close();
         }
 
         private void cbxGroups_SelectedIndexChanged(object sender, EventArgs e)

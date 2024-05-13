@@ -27,23 +27,6 @@ namespace ChatApp_CMPG315
             {
                 User user = snapshot.ConvertTo<User>();
 
-                List<User> contactUsers = new List<User>();
-                foreach (string contactEmail in user.ContactEmails)
-                {
-                    if (!string.IsNullOrEmpty(contactEmail))
-                    {
-                        DocumentReference contactDocRef = database.Collection("users").Document(contactEmail);
-                        DocumentSnapshot contactSnapshot = await contactDocRef.GetSnapshotAsync();
-                        if (contactSnapshot.Exists)
-                        {
-                            User contactUser = contactSnapshot.ConvertTo<User>();
-                            contactUsers.Add(contactUser);
-                        }
-                    }
-                }
-
-                user.ContactUsers = contactUsers;
-
                 return user;
             }
 
@@ -80,7 +63,51 @@ namespace ChatApp_CMPG315
             return userGroups;
         }
 
+        public async Task<List<string>> GetListOfSenderIds(FirestoreDb database, string userEmail, List<string> existingContacts)
+        {
+            List<string> senderIds = new List<string>();
 
+            QuerySnapshot querySnapshot = await database.Collection("messages")
+                .WhereEqualTo("recipient_id", userEmail)
+                .GetSnapshotAsync();
+
+            foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
+            {
+                if (documentSnapshot.ContainsField("sender_id"))
+                {
+                    string senderId = documentSnapshot.GetValue<string>("sender_id");
+
+                    if (!existingContacts.Contains(senderId))
+                    {
+                        senderIds.Add(senderId);
+                    }
+                }
+            }
+
+            return senderIds;
+        }
+
+        public async Task<User> PopulateContactUsers(FirestoreDb database,User user)
+        {
+            List<User> contactUsers = new List<User>();
+            foreach (string contactEmail in user.ContactEmails)
+            {
+                if (!string.IsNullOrEmpty(contactEmail))
+                {
+                    DocumentReference contactDocRef = database.Collection("users").Document(contactEmail);
+                    DocumentSnapshot contactSnapshot = await contactDocRef.GetSnapshotAsync();
+                    if (contactSnapshot.Exists)
+                    {
+                        User contactUser = contactSnapshot.ConvertTo<User>();
+                        contactUsers.Add(contactUser);
+                    }
+                }
+            }
+
+            user.ContactUsers = contactUsers;
+
+            return user;
+        }
 
         public bool verifyPassword(string password, string passwordhash)
         {
@@ -180,7 +207,7 @@ namespace ChatApp_CMPG315
 
         private async void cButton1_Click(object sender, EventArgs e)
         {
-            string email = cTxtUserName.Texts;
+            string email = cTxtUserName.Texts.ToLower();
             string password = cTxtPassword.Texts;
 
             if (ValidateLogin(email, password))
@@ -188,16 +215,27 @@ namespace ChatApp_CMPG315
                 FirestoreDb database = FirestoreHelper.Database;
 
                 User user = await GetUserByEmail(database, email);
+
+                List<string> receipientEmails = await GetListOfSenderIds(database, email, user.ContactEmails);
+
+                foreach (var recipientEmail in receipientEmails)
+                {
+                    user.ContactEmails.Add(recipientEmail);
+                }
+
+                user = await PopulateContactUsers(database, user);
+
                 List<Groups> groups = await GetGroupsForUser(database, email);
+
                 if (user != null && verifyPassword(password, user.Password))
                 {
                     ChatForm chat = new ChatForm(user, groups);
-                    this.Hide();
+                    Hide();
                     chat.Show();
                 }
                 else
                 {
-                    MessageBox.Show("Invalid email or password");
+                    displayWarning("Invalid email or password. Please try again.");
                 }
             }
         }

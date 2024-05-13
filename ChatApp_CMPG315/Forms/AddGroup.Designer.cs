@@ -126,7 +126,7 @@
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Image = global::ChatApp_CMPG315.Properties.Resources.icons8_close_window_48;
-            this.pictureBox1.Location = new System.Drawing.Point(566, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(582, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(16, 16);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -155,11 +155,12 @@
             this.btnCreateGroup.BorderColor = System.Drawing.Color.PaleTurquoise;
             this.btnCreateGroup.BorderRadius = 30;
             this.btnCreateGroup.BorderSize = 1;
+            this.btnCreateGroup.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCreateGroup.FlatAppearance.BorderSize = 0;
             this.btnCreateGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreateGroup.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateGroup.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCreateGroup.Location = new System.Drawing.Point(178, 580);
+            this.btnCreateGroup.Location = new System.Drawing.Point(178, 613);
             this.btnCreateGroup.Name = "btnCreateGroup";
             this.btnCreateGroup.Size = new System.Drawing.Size(251, 36);
             this.btnCreateGroup.TabIndex = 9;
@@ -192,7 +193,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(594, 656);
+            this.ClientSize = new System.Drawing.Size(610, 695);
             this.Controls.Add(this.txtGroupName);
             this.Controls.Add(this.lbxGroupMembers);
             this.Controls.Add(this.pictureBox1);
@@ -204,9 +205,11 @@
             this.Controls.Add(this.btnCreateGroup);
             this.Controls.Add(this.cbxContacs);
             this.Controls.Add(this.rbxNoContacts);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximumSize = new System.Drawing.Size(610, 695);
             this.MinimumSize = new System.Drawing.Size(610, 695);
             this.Name = "AddGroup";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddGroup";
             this.Load += new System.EventHandler(this.AddGroup_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
