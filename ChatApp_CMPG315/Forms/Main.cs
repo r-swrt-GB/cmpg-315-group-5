@@ -159,10 +159,12 @@ namespace ChatApp_CMPG315
 
         public async Task SendMessageAsync(FirestoreDb database, string senderEmail, string recipientEmail, string messageBody, bool isGroup)
         {
+            DateTime created_at = DateTime.UtcNow;
+            DateTime uptodate = created_at.AddHours(2);
             Messages newMessage = new Messages()
             {
                 body = messageBody,
-                created_at = DateTime.UtcNow,//UtcNwo used for FireStore requirement
+                created_at = uptodate,//UtcNwo used for FireStore requirement
                 sender_id = senderEmail,
                 recipient_id = recipientEmail
 
