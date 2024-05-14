@@ -100,6 +100,7 @@
             // cbxContacs
             // 
             this.cbxContacs.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.cbxContacs.CheckOnClick = true;
             this.cbxContacs.Font = new System.Drawing.Font("Trebuchet MS", 10F, System.Drawing.FontStyle.Bold);
             this.cbxContacs.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.cbxContacs.FormattingEnabled = true;

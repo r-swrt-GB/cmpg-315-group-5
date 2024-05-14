@@ -216,6 +216,12 @@ namespace ChatApp_CMPG315
 
                 User user = await GetUserByEmail(database, email);
 
+                if (user == null)
+                {
+                    displayWarning("User not found.");
+                    return;
+                }
+
                 List<string> receipientEmails = await GetListOfSenderIds(database, email, user.ContactEmails);
 
                 foreach (var recipientEmail in receipientEmails)

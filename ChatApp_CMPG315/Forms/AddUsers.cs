@@ -255,6 +255,8 @@ namespace ChatApp_CMPG315
         private void cButton1_Click(object sender, EventArgs e)
         {
             Close();
+            ChatForm chat = new ChatForm(user, groups);
+            chat.Show();
         }
 
         private void cbxGroups_SelectedIndexChanged(object sender, EventArgs e)

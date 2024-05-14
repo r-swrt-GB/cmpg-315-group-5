@@ -631,7 +631,7 @@ namespace ChatApp_CMPG315
         private void cButton1_Click(object sender, EventArgs e)
         {
             AddUsers users = new AddUsers(user, groups);
-
+            this.Hide();
             users.Show();
         }
 
