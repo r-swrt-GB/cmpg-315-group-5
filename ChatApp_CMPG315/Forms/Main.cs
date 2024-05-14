@@ -16,6 +16,7 @@ namespace ChatApp_CMPG315
     {
         public string userEmail;
         public string receiver;
+        public string receiverName;
 
         private User user;
         private List<Groups> groups;
@@ -23,7 +24,10 @@ namespace ChatApp_CMPG315
 
         private int lastSelectedIndex = -1;
 
-        private System.Timers.Timer timer;
+        private System.Timers.Timer individualTimer;
+        private System.Timers.Timer groupTimer;
+
+        private List<Messages> currentMessages = new List<Messages> { };
 
         public ChatForm(User user, List<Groups> groups)
         {
@@ -38,36 +42,82 @@ namespace ChatApp_CMPG315
 
             PopulateUserEmails();
             //SetupRealTimeMessageListener(database, userEmail, recipientEmail,lstMessages);
-            //SetupTimer();
+            SetupIndividualTimer();
+            SetupGroupTimer();
         }
 
-        private void SetupTimer()
+        private void SetupIndividualTimer()
         {
-            timer = new System.Timers.Timer(1000);
-            timer.Elapsed += OnTimedEvent;
-            timer.Enabled = true;
+            individualTimer = new System.Timers.Timer(1000);
+            individualTimer.Elapsed += OnIndividualTimedEvent;
+            individualTimer.Enabled = false;
         }
 
-        private void OnTimedEvent(Object source, ElapsedEventArgs e)
+        private void SetupGroupTimer()
         {
-            this.BeginInvoke((MethodInvoker)async delegate
+            groupTimer = new System.Timers.Timer(1000);
+            groupTimer.Elapsed += OnGroupTimedEvent;
+            groupTimer.Enabled = false;
+        }
+
+        private void OnIndividualTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            BeginInvoke((MethodInvoker)async delegate
             {
-                List<Messages> newMessages = await GetMessagesBetweenUsers(database, userEmail, receiver);
-                //List<string> formattedMessages = newMessages.Select(m => FormatMessage(m, userEmail)).ToList();
 
-                List<string> formattedMessages = new List<string> { };
-
-                if (!IsListBoxContentSame(lstMessages, formattedMessages))
+                if (lstUsers.SelectedIndex == -1)
                 {
-                    lstMessages.Items.Clear();
-                    foreach (var message in formattedMessages)
-                    {
-                        lstMessages.Items.Add(message);
-                    }
+                    return;
+                }
 
-                    // Scroll to the bottom of the ListBox
-                    if (lstMessages.Items.Count > 0)
-                        lstMessages.SelectedIndex = lstMessages.Items.Count - 1;
+                if (string.IsNullOrEmpty(receiver) || string.IsNullOrEmpty(userEmail))
+                {
+                    return;
+                }
+
+                List<Messages> newMessages = await GetMessagesBetweenUsers(database, userEmail, receiver);
+                List<Messages> sortedMessages = SortMessagesByDate(newMessages);
+
+                if (currentMessages.Count() != sortedMessages.Count())
+                {
+                    await LoadInitialMessages(database, user.Email, receiver, receiverName);
+                }
+            });
+        }
+
+        private void OnGroupTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            BeginInvoke((MethodInvoker)async delegate
+            {
+
+                if (lstUsers.SelectedIndex == -1)
+                {
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(receiver) || string.IsNullOrEmpty(userEmail))
+                {
+                    return;
+                }
+
+                QuerySnapshot querySnapshot = await database.Collection("messages")
+                                .WhereEqualTo("recipient_id", lblChatterUsername.Text)
+                                .GetSnapshotAsync();
+
+                List<Messages> messages = new List<Messages>();
+
+
+                foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
+                {
+                    Messages message = documentSnapshot.ConvertTo<Messages>();
+                    messages.Add(message);
+                }
+
+                List<Messages> sortedMessages = SortMessagesByDate(messages);
+
+                if (currentMessages.Count() != sortedMessages.Count())
+                {
+                    await LoadInitialGroupMessages(database, user.Email, lblChatterUsername.Text);
                 }
             });
         }
@@ -185,6 +235,8 @@ namespace ChatApp_CMPG315
             List<Messages> messages = await GetMessagesBetweenUsers(database, senderEmail, recipientEmail);
             List<Messages> sortedMessages = SortMessagesByDate(messages);
 
+            currentMessages = sortedMessages;
+
             if (sortedMessages == null || sortedMessages.Count == 0)
             {
                 lstMessages.Items.Add("No messages have been sent. Be the first to say hi!");
@@ -220,7 +272,7 @@ namespace ChatApp_CMPG315
                 .GetSnapshotAsync();
 
             List<Messages> messages = new List<Messages>();
-            
+
 
             foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
             {
@@ -229,6 +281,8 @@ namespace ChatApp_CMPG315
             }
 
             List<Messages> sortedMessages = SortMessagesByDate(messages);
+
+            currentMessages = sortedMessages;
 
             if (sortedMessages == null || sortedMessages.Count == 0)
             {
@@ -518,6 +572,9 @@ namespace ChatApp_CMPG315
                 return;
             }
 
+            individualTimer.Enabled = false;
+            groupTimer.Enabled = false;
+
             lstMessages.Items.Clear();
 
             lastSelectedIndex = lstUsers.SelectedIndex;
@@ -533,11 +590,16 @@ namespace ChatApp_CMPG315
                 string selectedUser = ExtractTextBeforeBrackets(lstUsers.SelectedItem.ToString());
 
                 receiver = selectedEmail;
+                receiverName = selectedUser;
 
                 lblChatterUsername.Text = selectedUser;
                 lblEmail.Text = selectedEmail;
 
                 await LoadInitialMessages(database, user.Email, receiver, selectedUser);
+
+                await Task.Delay(2000);
+
+                individualTimer.Enabled = true;
             }
             else
             {
@@ -553,6 +615,10 @@ namespace ChatApp_CMPG315
                     lblEmail.Text = $"Created at: {selectedGroup.created_at}, Created by: {selectedGroup.created_by}";
 
                     await LoadInitialGroupMessages(database, user.Email, selectedGroup.title);
+
+                    await Task.Delay(2000);
+
+                    groupTimer.Enabled = true;
                 }
                 else
                 {

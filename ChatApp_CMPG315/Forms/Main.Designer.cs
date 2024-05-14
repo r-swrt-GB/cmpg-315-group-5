@@ -390,7 +390,6 @@ namespace ChatApp_CMPG315
             this.Controls.Add(this.pnlMessages);
             this.Controls.Add(this.btnCreateGroup);
             this.Controls.Add(this.pnlUsers);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.MaximizeBox = false;
             this.Name = "ChatForm";
