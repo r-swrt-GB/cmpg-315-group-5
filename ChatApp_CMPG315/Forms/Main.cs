@@ -48,14 +48,14 @@ namespace ChatApp_CMPG315
 
         private void SetupIndividualTimer()
         {
-            individualTimer = new System.Timers.Timer(1000);
+            individualTimer = new System.Timers.Timer(2000);
             individualTimer.Elapsed += OnIndividualTimedEvent;
             individualTimer.Enabled = false;
         }
 
         private void SetupGroupTimer()
         {
-            groupTimer = new System.Timers.Timer(1000);
+            groupTimer = new System.Timers.Timer(2000);
             groupTimer.Elapsed += OnGroupTimedEvent;
             groupTimer.Enabled = false;
         }
@@ -91,11 +91,6 @@ namespace ChatApp_CMPG315
             {
 
                 if (lstUsers.SelectedIndex == -1)
-                {
-                    return;
-                }
-
-                if (string.IsNullOrEmpty(receiver) || string.IsNullOrEmpty(userEmail))
                 {
                     return;
                 }
@@ -597,7 +592,7 @@ namespace ChatApp_CMPG315
 
                 await LoadInitialMessages(database, user.Email, receiver, selectedUser);
 
-                await Task.Delay(2000);
+               // await Task.Delay(2000);
 
                 individualTimer.Enabled = true;
             }
@@ -616,7 +611,7 @@ namespace ChatApp_CMPG315
 
                     await LoadInitialGroupMessages(database, user.Email, selectedGroup.title);
 
-                    await Task.Delay(2000);
+                 //   await Task.Delay(2000);
 
                     groupTimer.Enabled = true;
                 }
